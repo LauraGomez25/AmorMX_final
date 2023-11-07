@@ -50,7 +50,7 @@
             
         } else {
             echo "<script>alert('Datos incorrectos');</script>";
-            header("Refresh:0;url=http://localhost/AmorMX/pages/Acceso.php");
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/Acceso.php");
         }
         
         // Cierra la conexión

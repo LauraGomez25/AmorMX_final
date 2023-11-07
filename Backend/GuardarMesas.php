@@ -35,7 +35,7 @@ if (!$result) {
     die("Error al ejecutar la consulta.");
 } else {
     echo "<script>alert('Registro exitoso');</script>";
-    header("Refresh:0;url=http://localhost/AmorMX/pages/Administrador.php");
+    header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
 }
 
 ?>

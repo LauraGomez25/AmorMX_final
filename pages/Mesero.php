@@ -65,7 +65,7 @@ if (!isset($_SESSION["id_usuario"])) {
         <div class="container">
             <section class="main-section">
 
-                <form action="../conexion.php" method="POST">
+                <form action="../PedirPlato.php" method="POST">
 
                     <h2>Mesas</h2>
                     <hr><br>
@@ -85,7 +85,7 @@ if (!isset($_SESSION["id_usuario"])) {
                     $rows = pg_num_rows($result);
                     if ($rows > 0) {
                         while ($row = pg_fetch_assoc($result)) {
-                            echo '<input type="radio" name="tipo" value="' . $row["nombre_tipo"] . '">' . $row["numero_mesa"] . '</input>';
+                            echo '<input type="radio" name="tipo" value="' . $row["nombre_tipo"] . '" required>' . $row["numero_mesa"] . '</input>';
                         }
                     }
                     ?>

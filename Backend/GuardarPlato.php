@@ -42,16 +42,16 @@ $sql_insert_plato = "INSERT INTO platos (id_categoria, nombre, precio, ruta)
 
 
 
-// Ejecutar la consulta de inserción
+
 if (pg_query($conn, $sql_insert_plato)) {
     if (move_uploaded_file($_FILES["fil_foto"]["tmp_name"], $rutaImagen)) {
         echo "<script>alert('Registro exitoso');</script>";
-        header("Refresh:0;url=http://localhost/AmorMX/pages/Administrador.php");
-    } else {
-        echo "Error al subir la imagen.";
-    }
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
+        } else {
+            echo "<script>alert('No ha seleccionado una imagen.');</script>";
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/RePlato.php");
+        }
 } else {
     echo "Error al insertar el plato: " . pg_last_error($conn);
 }
-
 ?>

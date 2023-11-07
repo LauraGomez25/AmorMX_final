@@ -56,7 +56,7 @@ $sql_insert_plato = "INSERT INTO pedidos_mesa (id_categoria, id_plato, cantidad)
     die("Error al ejecutar la consulta.");
 }else{
     echo "<script>alert('Registro exitoso');</script>";
-    header("Refresh:0;url=http://localhost/AmorMX/pages/Administrador.php");
+    header("Refresh:0;url=http://localhost/AmorMX_final/pages/Mesero.php");
 }
 
 ?>

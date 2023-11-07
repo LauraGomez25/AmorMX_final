@@ -60,7 +60,7 @@
                     <div class="field">
                         <label for="Tipo">Tipo de plato:</label>
                         <select type="Tipo" name="categoria" id="Tipo" required>
-                            <option value="Seleccione">Seleccione</option>
+                            <option value="">Seleccione</option>
                             <?php
                             require('../conexion.php');
 
@@ -77,7 +77,7 @@
                             $rows = pg_num_rows($result);
                             if ($rows > 0) {
                                 while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["nombre_categoria"] . '">' . $row["nombre_categoria"] . '</option>';
+                                    echo '<option value="' . $row["nombre_categoria"] . '" required>' . $row["nombre_categoria"] . '</option>';
                                 }
                             }
                             ?>
@@ -88,7 +88,7 @@
                     <div class="field">
                         <label for="Tipo">Nombre del plato:</label>
                         <select type="Tipo" name="nombre" id="Tipo" required>
-                            <option value="Seleccione">Seleccione</option>
+                            <option value="">Seleccione</option>
 
                             <?php
                             require('../conexion.php');
@@ -106,7 +106,7 @@
                             $rows = pg_num_rows($result);
                             if ($rows > 0) {
                                 while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["nombre"] . '">' . $row["nombre"] . '</option>';
+                                    echo '<option value="' . $row["nombre"] . '" required>' . $row["nombre"] . '</option>';
                                 }
                             }
                             ?>

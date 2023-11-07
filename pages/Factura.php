@@ -38,13 +38,13 @@
     <ul class="menu">
         <li class="left"><a href="../Index.html" class="icon-link">
                 <i class="fas fa-home" ></i>
-                Home
+                Factura
             </a></li>
 
 
-        <li class="right"><a href="../pages/Administrador.php" class="icon-link"> 
+        <li class="right"><a href="../pages/Cajero.php" class="icon-link"> 
                 <i class="fa-solid fa-right-to-bracket" ></i>
-                Admin</a></li>
+                Cajero</a></li>
     </ul>
 
     <div id="services" class="main-container">

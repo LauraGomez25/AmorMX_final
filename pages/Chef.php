@@ -66,7 +66,7 @@
         <div class="container">
             <section class="main-section">
 
-                <form action="show.php" method="post">
+                <form action="Chef.php" method="post">
 
                 
                 <h2>Visualizar Plato</h2>

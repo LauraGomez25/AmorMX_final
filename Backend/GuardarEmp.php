@@ -24,7 +24,7 @@ if (!$result_check_dni) {
 // Comprobar si el DNI ya existe
 if (pg_num_rows($result_check_dni) > 0) {
     echo "<script>alert('El DNI ya existe en la base de datos. No se puede registrar el mismo usuario.');</script>";
-    header("Refresh:0;url=http://localhost/AmorMX/pages/ReEmpleados.php");
+    header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReEmpleados.php");
 } else {
     // La cédula no existe, continuar con la inserción
     // Preparar SQL para insertar el usuario
@@ -38,7 +38,7 @@ if (pg_num_rows($result_check_dni) > 0) {
         die("Error al ejecutar la consulta de inserción.");
     } else {
         echo "<script>alert('Registro exitoso');</script>";
-        header("Refresh:0;url=http://localhost/AmorMX/pages/Administrador.php");
+        header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
     }
 }
 

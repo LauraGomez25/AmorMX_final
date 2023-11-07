@@ -63,26 +63,62 @@
         <div class="container">
             <section class="main-section">
 
-                <form action="show.php" method="post">
+            <form action="../PedirPlato.php" method="POST">
 
-                 <h2>Mesas</h2>
-                 <hr><br>
+<h2>Mesas</h2>
+<hr><br>
+<label>Mesa</label>
+<?php
+require('../conexion.php');
+
+// Prepare query
+$sql = "select * from mesas where nombre_tipo='Mesa'";
+// Execute sql
+$result = pg_query($conn, $sql);
+
+if (!$result) {
+    die("Error al ejecutar la consulta.");
+}
+
+$rows = pg_num_rows($result);
+if ($rows > 0) {
+    while ($row = pg_fetch_assoc($result)) {
+        echo '<input type="radio" name="tipo" value="' . $row["nombre_tipo"] . '" required>' . $row["numero_mesa"] . '</input>';
+    }
+}
+?>
+
+<!-- <label>Karaoke</label> -->
+
+<?php
+/*
+require('../conexion.php');
+$sql = "select * from mesas where nombre_tipo='Karaoke'";
+
+$result = pg_query($conn, $sql);
+
+if (!$result) {
+    die("Error al ejecutar la consulta.");
+}
+
+$rows = pg_num_rows($result);
+if ($rows > 0) {
+    while ($row = pg_fetch_assoc($result)) {
+        echo '<input type="radio" name="tipo2" value="' . $row["nombre_tipo"] . '">' . $row["numero_mesa"] . '</input>';
+    }
+}
+*/
+?> 
+
+<br>
+<br>
 
 
-                 <div class="field">
-                    <label for="gender"></label>
-                    <input type="radio" value="m" name="gender" id="gender_1">
-                    Mesa1
-                    <input type="radio" value="m" name="gender" id="gender_2">
-                    Mesa2
-                    <input type="radio" value="m" name="gender" id="gender_3">
-                    Mesa3
-                </div><br>
 
+<div class="boton">
+    <button type="submit"><a href="../pages/Factura.php">Ver Factura</a></button>
+</div>
 
-                <div class="boton">
-                    <button type="submit"><a href="../pages/Factura.php">Ver Factura</a></button>
-                </div>
 
   
                 
