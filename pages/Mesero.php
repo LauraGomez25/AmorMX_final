@@ -59,7 +59,7 @@ if (!isset($_SESSION["id_usuario"])) {
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Log out</a>
         </li>
-    </ul>
+    </ul><br>
 
     <div id="home" class="main-container">
         <div class="container">

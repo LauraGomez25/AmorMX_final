@@ -58,7 +58,7 @@
             <a href="cerrar_sesion.php" class="icon-link">
                 <i class="fa-solid fa-right-to-bracket" ></i>
                 Log out</a></li>
-        </ul>
+        </ul><br>
 
 
     

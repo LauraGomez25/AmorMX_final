@@ -60,12 +60,7 @@
             <a href="cerrar_sesion.php" class="icon-link">
                 <i class="fa-solid fa-right-to-bracket" ></i>
                 Log out</a></li>
-    </ul>
-
-
-
-
-
+    </ul><br>
 
 
     <div class="main-content">
@@ -83,7 +78,7 @@
                 <li class="service">
                     <a href="../pages/ReMenu.php">
                         <div class="service-content">
-                            <p>Registrar Menu</p>
+                            <p>Registrar Categoria Menu</p>
                         </div>
                     </a>
                 </li>
