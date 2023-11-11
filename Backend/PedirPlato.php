@@ -6,6 +6,7 @@ require('../conexion.php');
 $nombre_plato = $_POST['nombre'];
 $cantidad = $_POST['cantidad'];
 $categoria_nombre = $_POST['categoria']; 
+$comentarios = $_POST['comentario'];
 
 
 
@@ -42,8 +43,8 @@ $platos_id = $row_platos['id'];
 
 
 // Consulta SQL para insertar el plato
-$sql_insert_plato = "INSERT INTO pedidos_mesa (id_categoria, id_plato, cantidad) 
-                     VALUES ('$categoria_id', '$platos_id', $cantidad)";
+$sql_insert_plato = "INSERT INTO pedidos_mesa (id_categoria, id_plato, cantidad, comentarios) 
+                     VALUES ('$categoria_id', '$platos_id', $cantidad, '$comentarios')";
 
 
 

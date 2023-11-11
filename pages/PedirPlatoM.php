@@ -58,8 +58,9 @@
                 Log out</a></li>
     </ul><br>
 
-    <div id="services" class="main-container">
-        <div class="container">
+    
+    <div class="main-content">
+        
             <section class="main-section">
 
                 <form action="../Backend/PedirPlato.php" method="POST">
@@ -125,6 +126,11 @@
 
                          
                     <div class="field">
+                        <label for="text">Comentarios:</label>
+                        <input type="text" name="comentario" id="text" required>
+                    </div><br>
+
+                    <div class="field">
                         <label for="number">Cantidad de platos:</label>
                         <input type="number" name="cantidad" id="number" required>
                     </div><br>
@@ -133,13 +139,15 @@
                         <button type="submit">Enviar</button>
                     </div>
 
-  
-                
-
                 </form>
+            </section>
 
+
+            <section class="main-section">
+                <h2>Visualizacion</h2>
+                    <hr><br>
             </section>
         </div>
-
+                       
 </body>
 </html>

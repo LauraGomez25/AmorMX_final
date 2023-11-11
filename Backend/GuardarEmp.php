@@ -38,7 +38,7 @@ if (pg_num_rows($result_check_dni) > 0) {
         die("Error al ejecutar la consulta de inserción.");
     } else {
         echo "<script>alert('Registro exitoso');</script>";
-        header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
+        header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReEmpleados.php");
     }
 }
 

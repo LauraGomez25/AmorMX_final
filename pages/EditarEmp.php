@@ -7,6 +7,36 @@
 		header("Location: Acceso.php");
 	}
 ?>
+
+<?php
+
+    $idUsuario=$_GET['idUser'];
+
+    $sql = "select 
+                    u.*,
+                    tu.nombre_tipo
+            from 
+                    usuarios u inner join
+                        tipo_usuario tu
+                    on tu.id = u.id_tipo_usuario
+            where
+                    u.id = $idUsuario";
+
+    $result = pg_query($conn, $sql);
+
+    while($row = pg_fetch_assoc($result)){
+        $idU = $row['id'];
+        $idTipoUs = $row['id_tipo_usuario'];
+        $tipoU = $row['nombre_tipo'];
+        $nombre = $row['nombre_completo'];
+        $dni = $row['cedula'];
+        $correo = $row['correo'];
+        $telefono = $row['telefono'];
+        $direccion = $row['direccion'];
+        $pass = $row['contrasena'];
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,36 +90,38 @@
      <div class="main-content">
             <section class="main-section">
 
-                <form action="../Backend/GuardarEmp.php" method="POST">
+                <form action="../Backend/ActualizarEmpt.php" method="POST">
 
-                    <h2>Registro Empleados</h2>
+                    <h2>Edicion Empleados</h2>
                     <hr><br>
+
+                    <input type="hidden" name="idU" id="idU" value="<?php echo $idU; ?>" required>
 
                     <div class="field">
                         <label for="name">Nombre Completo:</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" value="<?php echo $nombre; ?>" required>
                     </div><br>
 
                     <div class="field">
                         <label for="id">Identificacion:</label>
-                        <input type="number" name="dni" id="id" required>
+                        <input type="number" name="dni" id="id" value="<?php echo $dni; ?>" required>
                     </div><br>
 
 
                     <div class="field">
                         <label for="email">Correo electronico:</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" value="<?php echo $correo; ?>" required>
                     </div><br>
 
 
                     <div class="field">
                         <label for="phone">Telefono:</label>
-                        <input type="number" name="phone" id="phone" required>
+                        <input type="number" name="phone" id="phone" value="<?php echo $telefono; ?>" required>
                     </div><br>
 
                     <div class="field">
                         <label for="dir">Direccion:</label>
-                        <input type="text" name="dir" id="dir" required>
+                        <input type="text" name="dir" id="dir" value="<?php echo $direccion; ?>" required>
                     </div><br>
      
                     <div class="field">
@@ -97,14 +129,14 @@
                         <div class="password-container">
                           <i id="toggle-password" class="fa-solid fa-eye-slash"
                            style="color: #8c8388; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                          <input type="password" name="pass" id="pass" required>
+                          <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" required>
                         </div>
                       </div><script src="../main.js"></script><br>
 
                     <div class="field">
                         <label for="Tipo">Rol:</label>
                         <select type="select" name="rol" id="Tipo" required>
-                            <option value="">Seleccione</option>
+                            <option value=<?php echo $idTipoUs; ?> ><?php echo $tipoU; ?></option>
                             <option value="1">Administrador</option>
                             <option value="2">Mesero</option>
                             <option value="3">Chef</option>
@@ -113,7 +145,7 @@
                     </div>
 
                     <div class="boton">
-                        <button type="submit">Enviar</button>
+                        <button type="submit">Guardar</button>
                     </div>
 
   
@@ -123,42 +155,7 @@
 
             </section>
 
-            <section class="main-section">
-                <h2>Visualizacion</h2>
-                    <hr><br>
-
-                    <table border="1" align="center">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Rol</th>
-                            <th>Telefono</th>
-                            <th>..</th>
-                        </tr>
-                        <?php
-
-                            $sql = "select 
-                                            u.id, u.nombre_completo, u.telefono,
-                                            tu.nombre_tipo
-                                    from 
-                                            usuarios u inner join
-                                                tipo_usuario tu
-                                            on tu.id = u.id_tipo_usuario
-                                    order by id_tipo_usuario";
-
-                            $result = pg_query($conn, $sql);
-
-                            while($row = pg_fetch_assoc($result)){
-                                echo "<tr>
-                                            <td>".$row['nombre_completo']."</td>
-                                            <td>".$row['nombre_tipo']."</td>
-                                            <td>".$row['telefono']."</td>
-                                            <td><a href='EditarEmp.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
-                                      </tr>";
-                            }
-
-                        ?>
-                    </table>
-            </section>
+                 
         </div>
     </div>
     
