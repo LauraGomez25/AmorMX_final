@@ -25,10 +25,10 @@
         // Mueve la imagen desde el directorio temporal al directorio de destino
         if (move_uploaded_file($_FILES["fil_foto"]["tmp_name"], $rutaImagen)) {
             echo "<script>alert('Registro exitoso');</script>";
-            header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
         } else {
             echo "<script>alert('No ha seleccionado una imagen.');</script>";
-            header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReMenu.php");
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
         }
 
     }  

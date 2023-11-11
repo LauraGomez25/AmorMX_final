@@ -51,7 +51,7 @@
 </head>
 <body>
 
-    <header>
+    <!--<header>
         <div class="image-container">
             <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo">
             <img src="../images/VD-removebg-preview.png" alt="Imagen 4" class="effect-4">
@@ -71,7 +71,7 @@
             <img src="../images/flor.png" alt="Imagen 16" class="effect-16">
             <img src="../images/flor.png" alt="Imagen 17" class="effect-17">
         </div>
-    </header>
+    </header>-->
 
 
 

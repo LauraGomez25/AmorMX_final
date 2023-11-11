@@ -8,6 +8,33 @@
 	}
 ?>
 
+<?php
+
+    $idPlatos=$_GET['idUser'];
+
+    $sql = "select 
+                p.id, p.nombre, p.precio, p.ruta, p.id_categoria,
+                tc.nombre_categoria
+            from 
+                platos p inner join
+                    categorias tc
+                on tc.id = p.id_categoria
+            where
+                    p.id = $idPlatos";
+
+    $result = pg_query($conn, $sql);
+
+    while($row = pg_fetch_assoc($result)){
+        $idP = $row['id'];
+        $idTipoCat = $row['id_categoria'];
+        $tipoC = $row['nombre_categoria'];
+        $nombre = $row['nombre'];
+        $precio = $row['precio'];
+        $imagen = $row['ruta'];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,32 +87,32 @@
     </ul><br>
 
 
-
     <div class="main-content">
             <section class="main-section">
 
-            <form action="../Backend/GuardarPlato.php" method="POST" enctype="multipart/form-data">
+            <form action="../Backend/ActualizarPlato.php" method="POST" enctype="multipart/form-data">
 
 
 
-                    <h2>Registro Plato</h2>
+                    <h2>Actualizar Plato</h2>
                     <hr><br>
 
+                    <input type="hidden" name="idP" id="idP" value="<?php echo $idP; ?>" required>
 
                     <div class="field">
                         <label for="name">Nombre:</label>
-                        <input type="text" name="nombre" id="name" required>
+                        <input type="text" name="nombre" id="name" value="<?php echo $nombre; ?>" required>
                     </div><br>
 
                     <div class="field">
                         <label for="id">Precio:</label>
-                        <input type="number" name="precio" id="id" required>
+                        <input type="number" name="precio" id="id" value="<?php echo $precio; ?>" required>
                     </div><br>
 
                     <div class="field">
                         <label for="Tipo">Categoria:</label>
-                        <select type="select" name="categoria" id="Tipo" required>
-                            <option value="">Seleccione</option>
+                        <select type="select" name="rol" id="Tipo" required>
+                            <option value="<?php echo $idTipoCat; ?> "><?php echo $tipoC; ?> </option>
 
                             <?php
                             require('../conexion.php');
@@ -113,7 +140,7 @@
 
                     <div class="field">
                         <label for="Tipo">Imagen:</label>
-                        <input type="file" name="fil_foto" id="fil_foto" onchange="mostrarVistaPrevia()">
+                        <input type="file" name="fil_foto" id="fil_foto" value="<?php echo $imagen; ?>" onchange="mostrarVistaPrevia()">
                     </div>
                     <div class="vista-previa">
                         <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
@@ -121,49 +148,11 @@
                     </div>
 
                     <div class="boton">
-                        <button type="submit">Registrar Plato</button>
+                        <button type="submit">Actualizar Plato</button>
                     </div>
 
 
                 </form>
-            </section>
-
-            <section class="main-section">
-                <h2>Visualizacion</h2>
-                    <hr><br>
-
-                    <table border="1" align="center">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Categoria</th>
-                            <th>Ruta</th>
-                            <th>..</th>
-                        </tr>
-                        <?php
-
-                            $sql = "select 
-                                            p.id, p.nombre, p.precio, p.ruta,
-                                            tc.nombre_categoria
-                                    from 
-                                            platos p inner join
-                                                categorias tc
-                                            on tc.id = p.id_categoria";
-
-                            $result = pg_query($conn, $sql);
-
-                            while($row = pg_fetch_assoc($result)){
-                                echo "<tr>
-                                            <td>".$row['nombre']."</td>
-                                            <td>".$row['precio']."</td>
-                                            <td>".$row['nombre_categoria']."</td>
-                                            <td>".$row['ruta']."</td>
-                                            <td><a href='../Modificaciones/EditarPlatos.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
-                                      </tr>";
-                            }
-
-                        ?>
-                    </table>
             </section>
         </div>
     </div>

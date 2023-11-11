@@ -60,16 +60,13 @@
     </ul><br>
 
 
-    <div id="services" class="main-container">
-        <div class="container">
+    <div class="main-content">
             <section class="main-section">
 
                 <form action="../Backend/GuardarMenu.php" method="post" enctype="multipart/form-data">
 
                 <h2>Registrar Menu</h2>
                 <hr><br>
-             
-
 
                 <div class="field">
                     <label for="name">Categoria:</label>
@@ -93,6 +90,36 @@
                     </div>
 
                 </form>
+            </section>
+
+            <section class="main-section">
+                <h2>Visualizacion</h2>
+                    <hr><br>
+
+                    <table border="1" align="center">
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Ruta</th>
+                            <th>..</th>
+                        </tr>
+                        <?php
+                            $sql = "select 
+                                            *
+                                    from 
+                                            categorias";
+
+                            $result = pg_query($conn, $sql);
+
+                            while($row = pg_fetch_assoc($result)){
+                                echo "<tr>
+                                            <td>".$row['nombre_categoria']."</td>
+                                            <td>".$row['ruta']."</td>
+                                            <td><a href='../Modificaciones/EditarCategoria.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
+                                    </tr>";
+                            }
+
+                        ?>
+                    </table>
             </section>
         </div>
     </div>

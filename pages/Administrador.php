@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="service">
-                    <a href="../pages/ReMenu.php">
+                    <a href="../pages/ReCategoria.php">
                         <div class="service-content">
                             <p>Registrar Categoria Menu</p>
                         </div>
