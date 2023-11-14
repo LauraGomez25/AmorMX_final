@@ -113,8 +113,8 @@
                             while($row = pg_fetch_assoc($result)){
                                 echo "<tr>
                                             <td>".$row['nombre_categoria']."</td>
-                                            <td>".$row['ruta']."</td>
-                                            <td><a href='../Modificaciones/EditarCategoria.php?idUser=".$row['id']."'><img src = '../icons/editar.png' width='20'></a></td>
+                                            <td><img src = ".$row['ruta']." width='50'></td>
+                                            <td><a href='../Modificaciones/EditarCategoria.php?idCat=".$row['id']."'><img src = '../icons/editar.png' width='20'></a></td>
                                     </tr>";
                             }
 

@@ -20,7 +20,8 @@ require('../conexion.php');
    
     $rutaCarpeta = "../fotos/";
     $nombreImagen = $_FILES["fil_foto"]["name"];
-    $rutaImagen = $rutaCarpeta . $nombreImagen;
+    $extension = pathinfo($_FILES["fil_foto"]["name"], PATHINFO_EXTENSION);
+    $rutaImagen = $rutaCarpeta . $idC. "." .$extension;
 
 
     $sql = "update categorias set 
@@ -31,14 +32,28 @@ require('../conexion.php');
                 id = $idC ";
 
     // Ejecutar la consulta de actualizacion
-    $result = pg_query($conn, $sql);
+    //$result = pg_query($conn, $sql);
 
-    if (!$result) {
-        die("Error al ejecutar la consulta de actualizacion.");
+
+    // Ejecutar la consulta de actualizacion
+    if (pg_query($conn, $sql)) {
+        if (move_uploaded_file($_FILES["fil_foto"]["tmp_name"], $rutaImagen)) {
+            echo "<script>alert('Actualizacion exitosa');</script>";    
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
+        } else {
+            echo "<script>alert('No ha seleccionado una imagen.');</script>";
+            header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
+        }
     } else {
-        echo "<script>alert('Actualizacion exitosa');</script>";
-        header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
+        echo "Error al insertar la categoria: " . pg_last_error($conn);
     }
+
+    // if (!$result) {
+    //     die("Error al ejecutar la consulta de actualizacion.");
+    // } else {
+    //     echo "<script>alert('Actualizacion exitosa');</script>";
+    //     header("Refresh:0;url=http://localhost/AmorMX_final/pages/ReCategoria.php");
+    // }
 
     // Cerrar la conexión a la base de datos si es necesario
     pg_close($conn);

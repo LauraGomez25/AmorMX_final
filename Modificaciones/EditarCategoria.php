@@ -9,7 +9,7 @@
 ?>
 
 <?php
-     $idCategoria = $_GET['idUser'];
+     $idCategoria = $_GET['idCat'];
 
      $sql = "select 
                      *                     
