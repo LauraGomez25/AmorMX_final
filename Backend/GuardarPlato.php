@@ -1,4 +1,6 @@
 <?php
+
+use PgSql\Connection;
 // Conexion a la base de datos
 require('../conexion.php');
 
@@ -10,6 +12,7 @@ $categoria_nombre = $_POST['categoria'];
 $rutaCarpeta = "../fotos/";
 $nombreImagen = $_FILES["fil_foto"]["name"];
 $rutaImagen = $rutaCarpeta . $nombreImagen;
+$extension = pathinfo($_FILES["fil_foto"]["name"], PATHINFO_EXTENSION);
 
 // Consulta SQL para obtener el nombre de la categoría
 $sql_categoria = "SELECT id FROM categorias WHERE nombre_categoria = '$categoria_nombre'";
@@ -29,29 +32,29 @@ $categoria_id = $row_categoria['id'];
 $sql_insert_plato = "INSERT INTO platos (id_categoria, nombre, precio, ruta) 
                      VALUES ('$categoria_id', '$nombre', '$precio', '$rutaImagen')";
 
+    if (pg_query($conn, $sql_insert_plato)) {
 
+        $sql_last_id = "select id from platos order by id desc limit 1";
+        $res = pg_query($conn, $sql_last_id);
 
+        while($row = pg_fetch_assoc($res)){
+            $lastId = $row['id'];
+        }
 
-// if (isset($_FILES["fil_foto"]) && $_FILES["fil_foto"]["error"] == UPLOAD_ERR_OK) {
-//     // Procesar la imagen
-//     // Resto del código para procesar la imagen
-// } else {
-//     echo "Error al subir la imagen.";
-// }
+        $nuevaRuta = $rutaCarpeta . $lastId. "." .$extension;
+        $sql_update_foto_name = "update platos set ruta = '$nuevaRuta' where id = $lastId";
+        $res = pg_query($conn, $sql_update_foto_name);
 
+        $rutaImagen = $rutaCarpeta . $lastId. "." .$extension;
 
-
-
-
-if (pg_query($conn, $sql_insert_plato)) {
-    if (move_uploaded_file($_FILES["fil_foto"]["tmp_name"], $rutaImagen)) {
-        echo "<script>alert('Registro exitoso');</script>";
+        if (move_uploaded_file($_FILES["fil_foto"]["tmp_name"], $rutaImagen)) {
+            echo "<script>alert('Registro exitoso');</script>";    
             header("Refresh:0;url=http://localhost/AmorMX_final/pages/Administrador.php");
         } else {
             echo "<script>alert('No ha seleccionado una imagen.');</script>";
             header("Refresh:0;url=http://localhost/AmorMX_final/pages/RePlato.php");
         }
-} else {
-    echo "Error al insertar el plato: " . pg_last_error($conn);
-}
+    } else {
+        echo "Error al insertar el plato: " . pg_last_error($conn);
+    }
 ?>

@@ -114,7 +114,7 @@
                                 echo "<tr>
                                             <td>".$row['nombre_categoria']."</td>
                                             <td>".$row['ruta']."</td>
-                                            <td><a href='../Modificaciones/EditarCategoria.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
+                                            <td><a href='../Modificaciones/EditarCategoria.php?idUser=".$row['id']."'><img src = '../icons/editar.png' width='20'></a></td>
                                     </tr>";
                             }
 

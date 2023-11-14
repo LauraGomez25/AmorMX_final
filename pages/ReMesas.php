@@ -59,8 +59,7 @@
     </ul><br>
 
 
-    <div id="services" class="main-container">
-        <div class="container">
+    <div class="main-content">
             <section class="main-section">
 
                 <form action="../Backend/GuardarMesas.php" method="POST">
@@ -69,19 +68,46 @@
                     <hr><br>
 
                     <div class="field">
-                    <label for="gender"></label>
-                    <input type="radio" value="Mesa" name="nombre_tipo" id="Mesa">
-                    Mesa
-                    <!-- <input type="radio" value="Karaoke" name="nombre_tipo" id="Karaoke">
-                    Karaoke -->
-
-                    </div><br>
+                        <label for="Tipo"></label>
+                        <select type="select" name="nombre_tipo" id="Tipo" required>
+                            <option value="">Seleccione</option>
+                            <option value="mesa">Mesas</option>
+                        </select>
+                    </div>
 
                     <div class="boton">
-                        <button type="submit">Enviar</button>
+                        <button type="submit">Agregar Mesa</button>
                     </div>
 
                 </form>
+
+            </section>
+
+            <section class="main-section">
+                <h2>Visualizacion</h2>
+                    <hr><br>
+
+                    <table border="1" align="center">
+                        <tr>
+                            <th>Mesas</th>
+                                                        
+                        </tr>
+                        <?php
+                            $sql = "select 
+                                            *
+                                    from 
+                                            mesas";
+
+                            $result = pg_query($conn, $sql);
+
+                            while($row = pg_fetch_assoc($result)){
+                                echo "<tr>
+                                           <td><a href=#?idUser=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a></td>
+                                    </tr>";
+                            }
+
+                        ?>
+                    </table>
 
             </section>
         </div>

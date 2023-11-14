@@ -69,60 +69,33 @@ if (!isset($_SESSION["id_usuario"])) {
 
                     <h2>Mesas</h2>
                     <hr><br>
-                    <label>Mesa</label>
-                    <?php
-                    require('../conexion.php');
-
-                    // Prepare query
-                    $sql = "select * from mesas where nombre_tipo='Mesa'";
-                    // Execute sql
-                    $result = pg_query($conn, $sql);
-
-                    if (!$result) {
-                        die("Error al ejecutar la consulta.");
-                    }
-
-                    $rows = pg_num_rows($result);
-                    if ($rows > 0) {
-                        while ($row = pg_fetch_assoc($result)) {
-                            echo '<input type="radio" name="tipo" value="' . $row["nombre_tipo"] . '" required>' . $row["numero_mesa"] . '</input>';
-                        }
-                    }
-                    ?>
-
-                   <!-- <label>Karaoke</label> -->
-                    
-                   <?php
-                   /*
-                    require('../conexion.php');
-                    $sql = "select * from mesas where nombre_tipo='Karaoke'";
                    
-                    $result = pg_query($conn, $sql);
 
-                    if (!$result) {
-                        die("Error al ejecutar la consulta.");
-                    }
+                    <table border="1" align="center">
+                     
+                        <?php
+                            $sql = "select 
+                                            *
+                                    from 
+                                            mesas";
 
-                    $rows = pg_num_rows($result);
-                    if ($rows > 0) {
-                        while ($row = pg_fetch_assoc($result)) {
-                            echo '<input type="radio" name="tipo2" value="' . $row["nombre_tipo"] . '">' . $row["numero_mesa"] . '</input>';
-                        }
-                    }
-                    */
-                    ?> 
+                            $result = pg_query($conn, $sql);
 
-                    <br>
-                    <br>
-
-
-
-                    <div class="boton">
-                        <button type="submit"><a href="../pages/PedirPlatoM.php">Agregar Pedido</a></button>
-                    </div>
-
-
-
+                            echo "<tr>";
+                            $count = 0;
+                            while($row = pg_fetch_assoc($result)){
+                                echo "<td><br>&nbsp;&nbsp;
+                                        <a href=#?idUser=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."
+                                        
+                                        </td>";
+                                $count+=1;
+                                if($count % 5 == 0){
+                                    echo "</tr><tr>";
+                                }        
+                            }
+                            echo "</tr>";
+                        ?>
+                    </table>
 
                 </form>
 

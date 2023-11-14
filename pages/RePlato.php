@@ -157,8 +157,8 @@
                                             <td>".$row['nombre']."</td>
                                             <td>".$row['precio']."</td>
                                             <td>".$row['nombre_categoria']."</td>
-                                            <td>".$row['ruta']."</td>
-                                            <td><a href='../Modificaciones/EditarPlatos.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
+                                            <td><img src = ".$row['ruta']." width='50'></td>
+                                            <td><a href='../Modificaciones/EditarPlatos.php?idPlato=".$row['id']."'><img src = '../icons/editar.png' width='20'></a></td>
                                       </tr>";
                             }
 

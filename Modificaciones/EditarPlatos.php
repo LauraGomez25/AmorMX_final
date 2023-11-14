@@ -10,7 +10,7 @@
 
 <?php
 
-    $idPlatos=$_GET['idUser'];
+    $idPlatos=$_GET['idPlato'];
 
     $sql = "select 
                 p.id, p.nombre, p.precio, p.ruta, p.id_categoria,

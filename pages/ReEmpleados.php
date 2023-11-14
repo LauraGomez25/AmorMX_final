@@ -152,7 +152,7 @@
                                             <td>".$row['nombre_completo']."</td>
                                             <td>".$row['nombre_tipo']."</td>
                                             <td>".$row['telefono']."</td>
-                                            <td><a href='../Modificaciones/EditarEmp.php?idUser=".$row['id']."'><img src = '../icons/edit.jpeg' width='20'></a></td>
+                                            <td><a href='../Modificaciones/EditarEmp.php?idUser=".$row['id']."'><img src = '../icons/editar.png' width='20'></a></td>
                                       </tr>";
                             }
 
