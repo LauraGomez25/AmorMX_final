@@ -14,11 +14,39 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Registro Empleado</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/main2.css'>
+    <link rel='stylesheet' href='../css/main_header.css'>
+    <link rel='stylesheet' href='../css/main_cuerpo.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src='main.js'></script>
 
 </head>
+
+<style>
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/FondoMex.png');
+        background-size: 100% 78%;
+        background-repeat: no-repeat;
+        background-position: center 127px;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(252, 247, 230);
+        font-family: "Garamond", serif;
+        overflow-x: hidden;
+    }
+</style>
+
+
 <body>
 
     <header>
@@ -127,7 +155,7 @@
                 <h2>Visualizacion</h2>
                     <hr><br>
 
-                    <table border="1" align="center">
+                    <table >
                         <tr>
                             <th>Nombre</th>
                             <th>Rol</th>

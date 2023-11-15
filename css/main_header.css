@@ -1,0 +1,327 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(233, 230, 252);
+    font-family: "Garamond", serif;
+    overflow-x: hidden;
+}
+
+header {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #24283e;
+    width: 100%;
+    height: 14vh; /* Puedes ajustar la altura según tus necesidades */
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente el contenido del encabezado */
+    align-items: center; /* Centrar verticalmente el contenido del encabezado */
+}
+
+
+.image-container {
+    position: relative;
+}
+
+.logo {
+    width: 27%;
+    margin: 0 auto; /* Centrar horizontalmente el logo en el contenedor */
+    display: block;
+    z-index: 1;
+}
+
+.image-container img.effect-4,
+.image-container img.effect-5,
+.image-container img.effect-6,
+.image-container img.ca {
+    position: absolute;
+    width: 28%;
+}
+
+.image-container img.effect-4 {
+    top: -35%;
+    left: 4%;
+    transform: rotate(-20deg);
+    z-index: 1;
+}
+
+.image-container img.effect-5 {
+    top: -35%;
+    right: 4%;
+    transform: rotate(20deg) scaleX(-1);
+    z-index: 1;
+}
+
+.image-container img.effect-6 {
+    top: -35%;
+    left: -26%;
+    transform: rotate(-20deg);
+    z-index: 1;
+}
+
+.image-container img.ca {
+    top: -35%;
+    right: -26%;
+    transform: rotate(20deg) scaleX(-1);
+    z-index: 1;
+}
+
+
+
+
+
+.image-container img.effect-8,
+.image-container img.effect-9 {
+    position: absolute;
+    width: 9%; 
+}
+
+.image-container img.effect-8 {
+    left: 29.5%;
+    top: 3%;
+    animation: tambalear 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-9 {
+    right: 29.5%;
+    top: 3%;
+    animation: tambalear 1s infinite ease-out forwards;
+}
+
+
+.image-container img.effect-10,
+.image-container img.effect-11 {
+    position: absolute;
+    width: 6%; 
+}
+.image-container img.effect-10 {
+    left: 0%;
+    top: 0%;
+    animation: tambalear 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-11 {
+    right: 0%;
+    top: 0%;
+    animation: tambalear 1s infinite ease-out forwards;
+}
+
+
+@keyframes tambalear {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+
+
+
+.image-container img.effect-12,
+.image-container img.effect-13,
+.image-container img.effect-14,
+.image-container img.effect-15,
+.image-container img.effect-16,
+.image-container img.effect-17 {
+    position: absolute;
+    width: 5.3%; 
+}
+
+.image-container img.effect-12 {
+    top: 25%;
+    left: -36.5%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-13 {
+    top: 0.5%;
+    left: -32%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-14 {
+    top: 50%;
+    left: -32%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-15 {
+    top: 25%;
+    right: -36.5%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-16 {
+    top: 0.5%;
+    right: -32%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+.image-container img.effect-17 {
+    top: 50%;
+    right: -32%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
+@keyframes tambalear2 {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(3px) rotate(5deg);
+    }
+
+    50% {
+        transform: translateX(-3px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateX(3px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+
+
+.icon-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link i {
+    color: #ee9191;
+    margin-right: 5px;
+    /* Espacio entre el ícono y el texto */
+    transition: color 0.2s;
+    /* Agrega una transición suave */
+}
+
+.icon-link:hover i {
+    color: #f34343;
+    /* Cambia el color del ícono al pasar el mouse por encima */
+}
+
+/* Estilos para el campo select */
+
+
+ul.menu {
+    list-style: none;
+    padding: 0;
+    background-color: rgba(255, 242, 0, 0.525);
+    box-shadow: 0px 4px 6px rgb(199, 115, 255);
+    justify-content: space-between;
+    display: flex;
+    margin-top: 0; /* Ajusta el margen superior a 0 para eliminar el espacio en blanco */
+}
+
+
+ul.menu li {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+}
+
+ul.menu li a {
+    
+    display: block;
+    padding: 10px 20px;
+    color: #000000;
+    text-decoration: none;
+}
+
+ul.menu li:hover a {
+    color: rgb(0, 107, 111)
+}
+
+/* Estilo submenu */
+ul.menu li ul {
+    display: none;
+    position: absolute;
+    background-color: #555;
+}
+
+ul.menu li:hover ul {
+    display: block;
+}
+
+ul.menu li ul li {
+    display: block;
+}
+
+ul.menu li ul li a {
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+ul.menu li ul li:hover a {
+    background-color: #777;
+}
+
+
+
+
+.menu li.left {
+    float: left;
+    /* Alinear "Home" a la izquierda */
+}
+
+.menu li.right {
+    float: right;
+    /* Alinear "Salir" a la derecha */
+}
+
+
+
+
+.fa-home {
+    font-size: 20px;
+    /* Personaliza el tamaño aquí */
+    
+}
+
+.fa-right-to-bracket {
+    font-size: 20px;
+    /* Personaliza el tamaño aquí */
+
+}
+
+.icon-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link i {
+    color: #000000;
+    margin-right: 5px;
+    /* Espacio entre el ícono y el texto */
+    transition: color 0.2s;
+    /* Agrega una transición suave */
+}
+
+.icon-link:hover i {
+    color: rgb(115, 204, 255);
+    /* Cambia el color del ícono al pasar el mouse por encima */
+}
+

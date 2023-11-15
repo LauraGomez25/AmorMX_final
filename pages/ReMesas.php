@@ -1,26 +1,55 @@
 <?php
-    require('../conexion.php');
+require('../conexion.php');
 
-    session_start();
+session_start();
 
-    if(!isset($_SESSION["id_usuario"])) {
-		header("Location: Acceso.php");
-	}
+if (!isset($_SESSION["id_usuario"])) {
+    header("Location: Acceso.php");
+}
 ?>
 
 <!DOCTYPE html>
- <html>
- <head>
+<html>
+
+<head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Registro Mesas</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/main2.css'>
+    <link rel='stylesheet' href='../css/main_header.css'>
+    <link rel='stylesheet' href='../css/main_cuerpo.css'>
     <script src='main.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
- </head>
- <body>
+</head>
+
+<style>
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/FondoMex.png');
+        background-size: 100% 78%;
+        background-repeat: no-repeat;
+        background-position: center 127px;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(252, 247, 230);
+        font-family: "Garamond", serif;
+        overflow-x: hidden;
+    }
+</style>
+
+
+<body>
 
     <header>
         <div class="image-container">
@@ -47,7 +76,7 @@
 
 
     <ul class="menu">
-    <li class="left"><a href="" class="icon-link">
+        <li class="left"><a href="" class="icon-link">
                 <i class="fas fa-home"></i>
                 Administrador
             </a></li>
@@ -60,59 +89,60 @@
 
 
     <div class="main-content">
-            <section class="main-section">
+        <section class="main-section">
 
-                <form action="../Backend/GuardarMesas.php" method="POST">
+            <form action="../Backend/GuardarMesas.php" method="POST">
 
-                    <h2>Mesas</h2>
-                    <hr><br>
+                <h2>Mesas</h2>
+                <hr><br>
 
-                    <div class="field">
-                        <label for="Tipo"></label>
-                        <select type="select" name="nombre_tipo" id="Tipo" required>
-                            <option value="">Seleccione</option>
-                            <option value="mesa">Mesas</option>
-                        </select>
-                    </div>
+                <div class="field">
+                    <label for="Tipo"></label>
+                    <select type="select" name="nombre_tipo" id="Tipo" required>
+                        <option value="">Seleccione</option>
+                        <option value="mesa">Mesas</option>
+                    </select>
+                </div>
 
-                    <div class="boton">
-                        <button type="submit">Agregar Mesa</button>
-                    </div>
+                <div class="boton">
+                    <button type="submit">Agregar Mesa</button>
+                </div>
 
-                </form>
+            </form>
 
-            </section>
+        </section>
 
-            <section class="main-section">
-                <h2>Visualizacion</h2>
-                    <hr><br>
+        <section class="main-section">
+            <h2>Visualizacion</h2>
+            <hr><br>
 
-                    <table border="1" align="center">
-                        <tr>
-                            <th>Mesas</th>
-                                                        
-                        </tr>
-                        <?php
-                            $sql = "select 
+            <table >
+                <tr>
+                    <th>Mesas</th>
+
+                </tr>
+                <?php
+                $sql = "select 
                                             *
                                     from 
                                             mesas";
 
-                            $result = pg_query($conn, $sql);
+                $result = pg_query($conn, $sql);
 
-                            while($row = pg_fetch_assoc($result)){
-                                echo "<tr>
-                                           <td><a href=#?idUser=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a></td>
+                while ($row = pg_fetch_assoc($result)) {
+                    echo "<tr>
+                                           <td><a href=#?idUser=" . $row['id'] . "'><img src = '../icons/mesa-redonda.png' width='30' ></a></td>
                                     </tr>";
-                            }
+                }
 
-                        ?>
-                    </table>
+                ?>
+            </table>
 
-            </section>
-        </div>
+        </section>
+    </div>
     </div>
 
 
- </body>
- </html>
+</body>
+
+</html>

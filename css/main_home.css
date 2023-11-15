@@ -1,12 +1,9 @@
 body {
     background-color: #24283e;
-    /* Reemplaza #f0f0f0 con el color que desees */
     overflow-x: hidden;
     overflow-y: hidden;
 }
 
-
-/* Estilo del menú principal */
 ul.menu {
     list-style: none;
     padding: 0;
@@ -28,7 +25,7 @@ ul.menu li a {
 ul.menu li:hover a {
     color: #f34343;
 }
-/* Estilo submenu */
+
 ul.menu li ul {
     display: none;
     position: absolute;
@@ -53,83 +50,6 @@ ul.menu li ul li:hover a {
     background-color: #dc1212;
 }
 
-
-
-
-
-
-.image-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100vh;
-    padding: 10px;
-
-}
-
-.image-container img {
-    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s, position 0.3s;
-    max-height: 100%;
-    position: absolute;
-}
-
-.image-container img.effect-2 {
-    bottom: 10px;
-    right: 40px;
-    top: 250px;
-    width: 210px;
-    /* Ajusta el valor de scale para hacer la imagen más grande */
-}
-
-.image-container img.effect-3 {
-    bottom: 10px;
-    left: 531px;
-    top: -30px;
-    transform: scale(1);
-}
-
-.image-container img.effect-4 {
-    bottom: 10px;
-    left: 260px;
-    top: -40px;
-    transform: scale(1.45) rotate(-21deg);
-}
-
-
-.image-container img.effect-5 {
-    bottom: 10px;
-    right: 260px;
-    top: -40px;
-
-    transform: scale(1.45) rotate(21deg) scaleX(-1);
-}
-
-.image-container img.effect-6 {
-    bottom: 10px;
-    right: -9px;
-    top: 25px;
-
-    transform: scale(1.19) rotate(3deg);
-
-}
-
-.image-container img.effect-7 {
-    bottom: 10px;
-    left: -9px;
-    top: 25px;
-
-    transform: scale(1.19) rotate(-3deg) scaleX(-1);
-}
-
-.image-container img.effect-8 {
-    bottom: 10px;
-    left: 495px;
-    top: -21px;
-    width: 73px;
-    animation: tambalear2 1s infinite ease-out forwards
-}
-
 .icon-link {
     text-decoration: none;
     display: flex;
@@ -138,127 +58,191 @@ ul.menu li ul li:hover a {
 
 .icon-link i {
     color: #ee9191;
-    margin-right: 5px; /* Espacio entre el ícono y el texto */
-    transition: color 0.2s; /* Agrega una transición suave */
+    margin-right: 5px;
+    transition: color 0.2s;
 }
 
 .icon-link:hover i {
-    color: #f34343; /* Cambia el color del ícono al pasar el mouse por encima */
+    color: #f34343;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+.image-container img {
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s, position 0.3s;
+    max-height: 100%;
+    width: auto;
+    position: relative;
+}
+
+.image-container img.effect-2 {
+    position: absolute;
+    right: -1%;
+    top: 40%;
+    width: 20%;
+}
+
+.image-container img.effect-3 {
+
+    position: absolute;
+    left: 50%;
+    top: 1%;
+    transform: translateX(-50%) scale(100%);
+    width: 16.5%;
+}
+
+.image-container img.effect-4 {
+    position: absolute;
+    left: -1%;
+    top: 4%;
+    transform: rotate(-35deg);
+    width: 18%;
+}
+
+.image-container img.effect-5 {
+    position: absolute;
+    right: 19.7%;
+    top: -3%;
+    transform: rotate(18deg) scaleX(-1);
+    width: 20%;
+}
+
+.image-container img.effect-6 {
+    position: absolute;
+    left: 19.3%;
+    top: -3%;
+    transform: rotate(18deg) scaleX(-1);
+    width: 20%;
+}
+
+.image-container img.effect-7 {
+    position: absolute;
+    right: -1.4%;
+    top: 4%;
+    transform: rotate(-8deg);
+    width: 18%;
 }
 
 
+.image-container img.effect-8 {
+    position: absolute;
+    right: 55%;
+    top: -10px;
+    width: 8%;
+    animation: tambalear2 1s infinite ease-out forwards;
+}
+
 .image-container img.effect-9 {
-    bottom: 10px;
-    right: 495px;
-    top: -25px;
-    width: 75px;
-    animation: tambalear2 1s infinite ease-out forwards
+    position: absolute;
+    left: 54%;
+    top: -10px;
+    width: 8.6%;
+    animation: tambalear2 1s infinite ease-out forwards;
 }
 
 @keyframes tambalear2 {
     0% {
         transform: rotate(0deg);
     }
+
     25% {
         transform: rotate(5deg);
     }
+
     50% {
         transform: rotate(-5deg);
     }
+
     75% {
         transform: rotate(5deg);
     }
+
     100% {
         transform: rotate(0deg);
     }
 }
 
 .image-container img.effect-10 {
-    bottom: 10px;
-    left: 176px;
-    top: -20px;
-    width: 60px;
-    animation: tambalear 1s infinite ease-out forwards
+    position: absolute;
+    right: 15.5%;
+    top: 9px;
+    width: 5%;
+    animation: tambalear 1s infinite ease-out forwards;
 }
 
 .image-container img.effect-11 {
-    bottom: 10px;
-    right: 176px;
-    top: -20px;
-    width: 60px;
-    animation: tambalear 1s infinite ease-out forwards ;
+    position: absolute;
+    left: 15.5%;
+    top: 9px;
+    width: 5%;
+    animation: tambalear 1s infinite ease-out forwards;
 }
 
 @keyframes tambalear {
     0% {
         transform: translateX(0) rotate(0deg);
     }
+
     25% {
         transform: translateX(3px) rotate(5deg);
     }
+
     50% {
         transform: translateX(-3px) rotate(-5deg);
     }
+
     75% {
         transform: translateX(3px) rotate(5deg);
     }
+
     100% {
         transform: translateX(0) rotate(0deg);
     }
 }
 
-
-
-
 .image-container img.effect-12 {
+    position: absolute;
     bottom: 10px;
-    left: 40px;
-    top: 250px;
-    width: 250px;
-
+    left: 5%;
+    top: 36%;
+    width: 15%;
 }
 
 .claseA {
     animation: animar 1s ease-out forwards;
+    width: 30%;
+    max-width: 100%;
+    height: auto;
 }
 
 @keyframes animar {
     0% {
-        transform: scale(0, 0)  translateX(0px) translateY(0);
+        transform: scale(0, 0) translateX(0px) translateY(0);
     }
+
     100% {
-        transform: scale(1, 1) translateX(20px) translateY(-150px); /* Ajusta el valor de translateY */
+        transform: scale(1, 1) translateX(5%) translateY(5%);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .puntero {
     position: absolute;
     width: 50px;
-    /* Ajusta el tamaño de la imagen */
     height: 50px;
-    /* Ajusta el tamaño de la imagen */
-    background-image: url('../images/flores.png');
+    background-image: url('images/flores.png');
     background-size: cover;
     display: none;
-    /* Oculta el puntero por defecto */
     pointer-events: none;
-    /* Evita que el puntero personalizado interfiera con elementos */
     animation: girar 2.5s infinite linear;
 }
-
 
 @keyframes girar {
     from {

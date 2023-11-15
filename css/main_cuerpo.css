@@ -1,0 +1,377 @@
+body {
+    background-color: rgb(252, 247, 230);
+    font-family: "Garamond", serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+.main-content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* Para que las secciones se ajusten en dispositivos más pequeños */
+    justify-content: center;
+    width: 100%;
+}
+
+
+.main-section {
+    background-color: rgba(200, 224, 238, 0.932);
+    padding: 2%;
+    border: 0.1% solid beige;
+    box-shadow: 0 0 10px rgb(114, 82, 148);
+    flex: 1;
+    margin: 0.5%;
+    max-width: calc(40% - 1%);
+    width: 100%;
+    /* Establece el ancho al 100% */
+    box-sizing: border-box;
+    /* Incluye el padding y el borde en el ancho total */
+}
+
+
+
+.logo2 {
+    width: 40%;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+}
+
+
+#home1.main-container {
+    text-align: left;
+    /* Centra el contenido horizontalmente */
+    margin-left: 20%;
+    /* Agrega margen izquierdo negativo si es necesario para mover el contenido hacia la derecha */
+    margin-top: 0px;
+    /* Opcional, agrega margen superior si es necesario */
+    width: 110%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding-left: 25%;
+}
+
+.service {
+    width: calc(33.33%-20px);
+    background-color: rgba(186, 195, 233, 0.932);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(172, 121, 227, 0.488);
+    transition: transform 0.2s;
+}
+
+
+li.service {
+    position: relative;
+}
+
+.services-list li {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente el contenido en cada casilla */
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    height: 100%;
+    min-height: 10px;
+}
+
+.services-list li a {
+    text-decoration: none;
+    color: #000000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.service p {
+    font-size: 15px;
+    margin: 0;
+    color: black;
+    text-align: left;
+}
+
+
+.service:hover {
+    background-color: rgba(186, 195, 233, 0.746);
+    transform: translateY(-5px);
+}
+
+
+
+.main-section h2 {
+    font-size: 35px;
+    text-align: center;
+    color: #13529a;
+    margin: 2%;
+}
+
+
+.services-list {
+    list-style: none;
+    padding: 0;
+}
+
+.services-list li {
+    position: relative;
+    margin-bottom: 15px;
+    max-width: 500px;
+    height: 10px;
+}
+
+.services-list li a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000000;
+}
+
+.services-list li p {
+    margin-left: 10px;
+    text-align: left;
+    line-height: 50px;
+}
+
+s li.service a {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.service:hover {
+    background-color: rgba(229, 186, 233, 0.746);
+    transform: translateY(-5px);
+}
+
+
+.service p {
+    font-size: 15px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.container h1 {
+    background-color: rgb(255, 184, 215);
+    border: 1px solid beige;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.main-section h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #13529a;
+    margin: 2%;
+}
+
+.service h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+
+.field {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+
+
+.field .password-container {
+    position: relative;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea {
+    width: 95.5%;
+    padding: 10px;
+    border: 1px solid rgb(199, 115, 255);
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.boton Button:hover {
+    background-color: rgb(199, 115, 255);
+    border: 1px solid rgba(255, 242, 0, 0.621);
+    box-shadow: 0 4px 6px rgba(221, 193, 8, 0.466);
+    padding: 7px 18px;
+    color: rgb(0, 0, 0);
+
+}
+
+.boton Button {
+    background-color: rgba(255, 242, 0, 0.621);
+    box-shadow: 0px 4px 6px rgb(199, 115, 255);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255, 160, 160, 0.397);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    font-family: "Garamond", serif;
+    padding: 7px 18px;
+    /* Aumenta el espacio dentro del botón */
+}
+
+.boton a {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #9e0090;
+}
+
+select option {
+    background-color: #ecdfe9;
+    color: #2d0e0e;
+    cursor: pointer;
+
+}
+
+select:hover {
+    background-color: rgba(229, 186, 233, 0.746);
+    box-shadow: 0 4px 6px rgba(172, 121, 227, 0.488);
+    border-radius: 3px;
+}
+
+
+select {
+    width: 100%;
+    padding: 7px;
+    text-align: center;
+    border: 1px solid rgb(199, 115, 255);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+select::-webkit-scrollbar {
+    width: 15px;
+}
+
+select::-webkit-scrollbar-track {
+    background: #ff86e7;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: #ad5099;
+}
+
+
+select:hover {
+    background-color: #ffaddb;
+    color: #3f2424;
+    box-shadow: 0 4px 6px rgba(172, 121, 227, 0.488);
+}
+
+select option:checked {
+    background-color: #ae407f;
+    border-color: #9e0090;
+}
+
+select option {
+    background-color: #ffd6f4;
+    color: #2d0e0e;
+    cursor: pointer;
+}
+
+
+
+input[type="date"] {
+    width: 18.5%;
+    padding: 7px;
+    text-align: center;
+    border: 1px solid rgb(199, 115, 255);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="radio"] {
+    text-align: center;
+}
+
+
+
+/* Tablas */
+
+table {
+    width: 80%;
+    margin: 2% auto;
+    border-collapse: separate;
+}
+
+th,
+td {
+    border: 1px solid rgb(199, 115, 255);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #fae5f59c;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(97, 160, 97, 0.304); /* Puedes cambiar esto al color que desees para las filas impares */
+}
+
+
+th {
+    background-color: rgba(34, 139, 34, 0.479);
+}
+
+a {
+    text-decoration: none;
+}
+
+a img {
+    border: none;
+}
