@@ -14,6 +14,7 @@
     $rutaImagen = $rutaCarpeta . $nombreImagen;
     $extension = pathinfo($_FILES["fil_foto"]["name"], PATHINFO_EXTENSION);
 
+    
 
     //preparar sql
     $sql = "insert into categorias (nombre_categoria, estado, ruta) values('$categoria','$estado','$rutaImagen');";

@@ -5,7 +5,9 @@
 
     if(!isset($_SESSION["id_usuario"])) {
 		header("Location: Acceso.php");
-	}
+	}else{
+        $id_usuario = $_SESSION["id_usuario"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -91,12 +93,18 @@
         
             <section class="main-section">
 
-                <form action="../Backend/PedirPlato.php" method="POST">
+                <form action="../Backend/GuardarPedido.php" method="POST">
 
                     <h2>Pedir Plato</h2>
                     <hr><br>
 
                     <div class="field">
+
+                    <?php
+                        $id_mesa = $_GET['idMesa'];
+                    ?>
+                    <input type="hidden" name="id_mesa" value="<?php  echo $id_mesa ?>" readonly="yes">
+
                         <label for="Tipo">Tipo de plato:</label>
                         <select type="Tipo" name="categoria" id="Tipo" required>
                             <option value="">Seleccione</option>
@@ -116,7 +124,7 @@
                             $rows = pg_num_rows($result);
                             if ($rows > 0) {
                                 while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["nombre_categoria"] . '" required>' . $row["nombre_categoria"] . '</option>';
+                                    echo '<option value="' . $row["id"] . '" required>' . $row["nombre_categoria"] . '</option>';
                                 }
                             }
                             ?>
@@ -145,7 +153,7 @@
                             $rows = pg_num_rows($result);
                             if ($rows > 0) {
                                 while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["nombre"] . '" required>' . $row["nombre"] . '</option>';
+                                    echo '<option value="' . $row["id"] . '" required>' . $row["nombre"] . '</option>';
                                 }
                             }
                             ?>
@@ -165,6 +173,10 @@
 
                     <div class="boton">
                         <button type="submit">Enviar</button>
+                    </div><br>
+
+                    <div class="boton">
+                        <button type="submit"><a href="Mesero.php">Mesas</a></button>
                     </div>
 
                 </form>
@@ -174,6 +186,54 @@
             <section class="main-section">
                 <h2>Visualizacion</h2>
                     <hr><br>
+
+                    <table >
+                <tr>
+                    <th>Tipo Plato</th>
+                    <th>Nombre Plato</th>
+                    <th>Comentarios</th>
+                    <th>Cantidad</th>
+                    <th>..</th>
+
+                </tr>
+                <?php
+                $sql = "select 
+                            pm.id as plato_id,
+                            u.cedula, m.numero_mesa,
+                            pl.nombre as nombre_plato, 
+                            pm.comentarios, pm.cantidad,
+                            c.nombre_categoria
+                        from 
+                            pedidos pe inner join
+                                pedidos_mesa pm inner join
+                                    categorias c
+                                on c.id = pm.id_categoria inner join
+                                    platos pl 
+                                on pl.id = pm.id_plato
+                            on pe.id = pm.id_pedido inner join 
+                                mesas m 
+                            on m.id = pe.id_mesa inner join 
+                                usuarios u 
+                            on u.id = pe.id_usuario
+                        where 
+                            pe.estado_pedido = true and 
+                            m.id = $id_mesa and 
+                            u.id = $id_usuario";
+
+                $result = pg_query($conn, $sql);
+
+                while ($row = pg_fetch_assoc($result)) {
+                    echo "<tr>
+                    <td>".$row['nombre_categoria']."</td>
+                    <td>".$row['nombre_plato']."</td>
+                    <td>".$row['comentarios']."</td>
+                    <td>".$row['cantidad']."</td>
+                    <td><a href='../Backend/EliminarPlatoPedido.php?idPlato=".$row['plato_id']."&idMesa=".$id_mesa."'><img src = '../icons/editar.png' width='20'></a></td>
+              </tr>";
+                }
+
+                ?>
+            </table>
             </section>
         </div>
                        

@@ -95,47 +95,36 @@
         <div id="services" class="main-container">
         <div class="container">
             <section class="main-section">
+            
+                <h2>Pedidos</h2>
+                    <hr><br>
 
-                <form action="Chef.php" method="post">
+                <table >
+                    <tr>
+                        <th>Id Pedido</th>
+                        <th>Num Mesa</th>
+                        <th>Ver</th>
+                       
+                    </tr>
 
-                
-                <h2>Visualizar Plato</h2>
-                 <hr><br>
+                    <?php
+                        $sql = "select
+                                    pe.id, pe.id_mesa
+                                from 
+                                    pedidos pe";
 
-                 <div class="field">
-                    <label for="id">Numero de mesa:</label>
-                    <label for="id">Predeterminado</label>
-                </div><br>
-                
-                 <div class="field">
-                    <label for="name">Nombre del Plato:</label>
-                    <label for="id">Predeterminado</label>
-                </div><br>
+                        $result = pg_query($conn, $sql);
 
-                
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                            <td>".$row['id_pedido']."</td>
+                            <td>".$row['id_mesa']."</td>
+                            <td><a href='../Modificaciones/VerPedido.php?idPlato=".$row['plato_id']."&idMesa=".$id_mesa."'><img src = '../icons/editar.png' width='20'></a></td>
+                    </tr>";
+                        }
 
-                 <div class="field">
-                    <label for="id">Cantidad:</label>
-                    <label for="id">Predeterminado</label>
-                </div>
-
-
-                <div class="field">
-                    <label for="Tipo">Estado:</label>
-                    <select type="select" name="tipo" id="Tipo" required>
-                        <option value="">Seleccione</option>
-                        <option value="Seleccione">En preparacion</option>
-                        <option value="Seleccione">Preparado</option>
-                        <option value="Seleccione">Despachado</option>
-                    </select>
-                </div>
-
-                    <div class="boton">
-                        <button type="submit">Enviar</button>
-                    </div>
-
-
-                </form>
+                ?>
+                </table>
             </section>
         </div>
     </div>

@@ -113,7 +113,7 @@ if (!isset($_SESSION["id_usuario"])) {
                             $count = 0;
                             while($row = pg_fetch_assoc($result)){
                                 echo "<td><br>&nbsp;&nbsp;
-                                        <a href=#?idUser=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."
+                                        <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."
                                         
                                         </td>";
                                 $count+=1;
