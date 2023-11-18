@@ -94,70 +94,43 @@
         <div class="container">
             <section class="main-section">
 
-            <form action="../PedirPlato.php" method="POST">
+                       
+            <h2>Pedidos</h2>
+                    <hr><br>
 
-<h2>Mesas</h2>
-<hr><br>
-<label>Mesa</label>
-<?php
-require('../conexion.php');
+                <table >
+                    <tr>
+                        <th>Id Pedido</th>
+                        <th>Num Mesa</th>
+                        <th>Detalles</th>
+                        <th>Baucher</th>
+                        <th>Estado</th>
+                       
+                    </tr>
 
-// Prepare query
-$sql = "select * from mesas where nombre_tipo='Mesa'";
-// Execute sql
-$result = pg_query($conn, $sql);
+                    <?php
+                        $sql = "select
+                                    pe.id, pe.id_mesa
+                                from 
+                                    pedidos pe
+                                where 
+                                    confirmacion_chef = true";
 
-if (!$result) {
-    die("Error al ejecutar la consulta.");
-}
+                        $result = pg_query($conn, $sql);
 
-$rows = pg_num_rows($result);
-if ($rows > 0) {
-    while ($row = pg_fetch_assoc($result)) {
-        echo '<input type="radio" name="tipo" value="' . $row["nombre_tipo"] . '" required>' . $row["numero_mesa"] . '</input>';
-    }
-}
-?>
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                            <td>".$row['id']."</td>
+                            <td>".$row['id_mesa']."</td>
+                            <td><a href='Factura.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/lupa.png' width='20'></a></td>
+                            <td><a href='Factura.php=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/impresora.png' width='20'></a></td>
+                            <td><a href='Factura.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/boton.png' width='20'></a></td>
 
-<!-- <label>Karaoke</label> -->
+                            </tr>";
+                        }
 
-<?php
-/*
-require('../conexion.php');
-$sql = "select * from mesas where nombre_tipo='Karaoke'";
-
-$result = pg_query($conn, $sql);
-
-if (!$result) {
-    die("Error al ejecutar la consulta.");
-}
-
-$rows = pg_num_rows($result);
-if ($rows > 0) {
-    while ($row = pg_fetch_assoc($result)) {
-        echo '<input type="radio" name="tipo2" value="' . $row["nombre_tipo"] . '">' . $row["numero_mesa"] . '</input>';
-    }
-}
-*/
-?> 
-
-<br>
-<br>
-
-
-
-<div class="boton">
-    <button type="submit"><a href="../pages/Factura.php">Ver Factura</a></button>
-</div>
-
-
-  
-                
-
-                </form>
-
-            </section>
-        </div>
+                ?>
+                </table>
 
 </body>
 </html>

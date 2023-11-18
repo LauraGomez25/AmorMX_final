@@ -111,7 +111,6 @@
                     <th>Nombre Plato</th>
                     <th>Comentarios</th>
                     <th>Cantidad</th>
-                    <th>..</th>
                 </tr>
 
                 <?php
@@ -145,9 +144,9 @@
                             <td>".$row['nombre_plato']."</td>
                             <td>".$row['comentarios']."</td>
                             <td>".$row['cantidad']."</td>
-                            <td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
                         </tr>";
-                        
+                        //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
+
                 }
 
                 ?>

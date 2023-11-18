@@ -5,7 +5,9 @@
 
     if(!isset($_SESSION["id_usuario"])) {
 		header("Location: Acceso.php");
-	}
+	}else{
+        $id_usuario = $_SESSION["id_usuario"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -74,67 +76,88 @@
 
 
     <ul class="menu">
-        <li class="left"><a href="../Index.html" class="icon-link">
+        <li class="left"><a href=""class="icon-link">
                 <i class="fas fa-home" ></i>
                 Factura
             </a></li>
 
 
-        <li class="right"><a href="../pages/Cajero.php" class="icon-link"> 
+            <li class="right">
+            <a href="../pages/Chef.php" class="icon-link">
                 <i class="fa-solid fa-right-to-bracket" ></i>
-                Cajero</a></li>
+                Salir</a></li>
     </ul><br>
 
     <div id="services" class="main-container">
         <div class="container">
+        
             <section class="main-section">
 
-                <form action="show.php" method="post">
+              
 
-                
-                <h2>Visualizar Factura</h2>
-                 <hr><br>
+                    <h2>Pedido</h2>
+                    <hr><br>
 
-                
-                 <div class="field">
-                    <label for="name">Nombre del Plato:</label>
-                    <label for="id">Predeterminado</label>
-                </div><br>
+                    <div class="field">
 
-                <div class="field">
-                    <label for="id">Numero de mesa:</label>
-                    <label for="id">Predeterminado</label>
-                </div><br>
+                    <?php
+                        $id_pedido = $_GET['idPedido'];
+                    ?>
+                    <input type="hidden" name="id_mesa" value="<?php  echo $id_mesa ?>" readonly="yes">
 
-                 <div class="field">
-                    <label for="id">Cantidad:</label>
-                    <label for="id">Predeterminado</label>
-                </div>
+                    <table >
+                <tr>
+                    <th>Tipo Plato</th>
+                    <th>Nombre Plato</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
 
-                <div class="field">
-                    <label for="id">Total a pagar:</label>
-                    <label for="id">Predeterminado</label>
-                </div><br>
+                <?php
+                $sql = "select 
+                            pm.id as plato_id,
+                            u.cedula, m.numero_mesa,
+                            pl.nombre as nombre_plato, pl.precio,
+                            pm.comentarios, pm.cantidad,
+                            c.nombre_categoria
+                        from 
+                            pedidos pe inner join
+                                pedidos_mesa pm inner join
+                                    categorias c
+                                on c.id = pm.id_categoria inner join
+                                    platos pl 
+                                on pl.id = pm.id_plato
+                            on pe.id = pm.id_pedido inner join 
+                                mesas m 
+                            on m.id = pe.id_mesa inner join 
+                                usuarios u 
+                            on u.id = pe.id_usuario
+                        where 
+                            pe.estado_pedido = true and 
+                            pe.id = $id_pedido";
 
-                <div class="field">
-                    <label for="Tipo">Metodo de pago:</label>
-                    <select type="select" name="tipo" id="Tipo" required>
-                        <option value="">Seleccione</option>
-                        <option value="Seleccione">Efectivo</option>
-                        <option value="Seleccione">Tarjeta</option>
-                        <option value="Seleccione">Transaccion</option>
-                    </select>
-                </div>
-               
+                $result = pg_query($conn, $sql);
 
-                <div class="boton">
-                    <button type="submit"><a href="">Pagar</a></button>
-                </div>
+                while ($row = pg_fetch_assoc($result)) {
+                    echo "<tr>
+                            <td>".$row['nombre_categoria']."</td>
+                            <td>".$row['nombre_plato']."</td>
+                            <td>".$row['cantidad']."</td>
+                            <td>".$row['precio']."</td>
+                        </tr>";
+                        //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
 
+                }
 
-                </form>
+                ?>
+            </table>
+
+            <div class="boton">
+                <button type="submit">Imprimir</button>
+            </div>
+
             </section>
         </div>
-    </div>
+                       
 </body>
 </html>
