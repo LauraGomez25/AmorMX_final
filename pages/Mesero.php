@@ -1,11 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else{
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +51,6 @@ if (!isset($_SESSION["id_usuario"])) {
     }
 </style>
 
-
-
 <body>
     <header>
         <div class="image-container">
@@ -73,19 +74,15 @@ if (!isset($_SESSION["id_usuario"])) {
         </div>
     </header>
 
-
-
     <ul class="menu">
         <li class="left"><a href="" class="icon-link">
-                <i class="fas fa-home"></i>
-                Mesero
-            </a></li>
-
+            <i class="fas fa-home"></i>Mesero: <?php echo $nom_usuario; ?></a></li>
 
         <li class="right">
             <a href="cerrar_sesion.php" class="icon-link">
                 <i class="fa-solid fa-right-to-bracket"></i>
-                Log out</a>
+                Log out
+            </a>
         </li>
     </ul><br>
 
@@ -112,10 +109,31 @@ if (!isset($_SESSION["id_usuario"])) {
                             echo "<tr>";
                             $count = 0;
                             while($row = pg_fetch_assoc($result)){
-                                echo "<td><br>&nbsp;&nbsp;
-                                        <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mesa-redonda.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."
-                                        
-                                        </td>";
+                                $sql2 = "select m.id, COALESCE(count(p.id_mesa), 0) as mesax from mesas m left join pedidos p on m.id = p.id_mesa and estado_pedido = true where m.id = {$row['id']}  GROUP BY m.id";
+                                $result2 = pg_query($conn, $sql2) ?? 0;
+                                                                
+                                while($row_mesax = pg_fetch_assoc($result2)){
+                                    $mesax = $row_mesax['mesax']; 
+                                }
+
+                                $sql_mesaUsuario = "select COALESCE(count(p.id_mesa), 0) as mesau from pedidos p where estado_pedido = true and id_mesa = {$row['id']} and id_usuario = $id_usuario";
+                                $result_mesaUsuario = pg_query($conn, $sql_mesaUsuario);
+
+                                while($row_mesaUsuario = pg_fetch_assoc($result_mesaUsuario)){
+                                    $mesaUsuario = $row_mesaUsuario['mesau']; 
+                                }
+
+                                if($mesax == 0){
+                                    echo "<td><br>&nbsp;&nbsp;
+                                            <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mLibre.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
+                                }elseif($mesaUsuario > 0){
+                                    echo "<td><br>&nbsp;&nbsp;
+                                            <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mOcupada.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
+                                }else{
+                                    echo "<td><br>&nbsp;&nbsp;
+                                            <img src = '../icons/mOcupada.png' width='30' >&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
+                                }
+
                                 $count+=1;
                                 if($count % 5 == 0){
                                     echo "</tr><tr>";

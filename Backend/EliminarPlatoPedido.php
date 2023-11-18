@@ -19,6 +19,10 @@
 
        $result_cantidad = pg_query($conn, $sql_cantidad);
 
+       while ($row = pg_fetch_assoc($result_cantidad)) {
+        $cantidad_platos = $row['cantidad_platos'];
+      }
+
        
        $sql_pedido = "select id_pedido from pedidos_mesa where id = $id_plato_pedido";
        $result_pedido = pg_query($conn, $sql_pedido);
@@ -27,7 +31,7 @@
             $id_pedido = $row['id_pedido'];
        }
 
-       if(pg_num_rows($result_cantidad) <= 1){
+       if($cantidad_platos <= 1){
            
          $sql_eliminarPlato_pedido = "delete from pedidos_mesa where id = $id_plato_pedido";
          pg_query($conn, $sql_eliminarPlato_pedido);
@@ -35,7 +39,7 @@
          $sql_eliminar_pedido = "delete from pedidos where id = $id_pedido";
          pg_query($conn, $sql_eliminar_pedido);
 
-         //header("Refresh:0;url=http://localhost/AmorMX_final/pages/Mesero.php");
+         header("Refresh:0;url=http://localhost/AmorMX_final/pages/Mesero.php");
 
        } else{
              $sql_eliminarPlato_pedido = "delete from pedidos_mesa where id = $id_plato_pedido";

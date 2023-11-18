@@ -173,11 +173,10 @@
 
                     <div class="boton">
                         <button type="submit">Enviar</button>
+                        <button type="submit"><a href="Mesero.php">Mesas</a></button>
+                        <button type="submit"><a href="Mesero.php">Confirmar Pedido</a></button>
                     </div><br>
 
-                    <div class="boton">
-                        <button type="submit"><a href="Mesero.php">Mesas</a></button>
-                    </div>
 
                 </form>
             </section>

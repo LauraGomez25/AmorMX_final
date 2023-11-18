@@ -103,7 +103,9 @@
                     <tr>
                         <th>Id Pedido</th>
                         <th>Num Mesa</th>
-                        <th>Ver</th>
+                        <th>Detalles</th>
+                        <th>Baucher</th>
+                        <th>Estado</th>
                        
                     </tr>
 
@@ -111,16 +113,21 @@
                         $sql = "select
                                     pe.id, pe.id_mesa
                                 from 
-                                    pedidos pe";
+                                    pedidos pe
+                                where 
+                                    confirmacion_chef = true";
 
                         $result = pg_query($conn, $sql);
 
                         while ($row = pg_fetch_assoc($result)) {
                             echo "<tr>
-                            <td>".$row['id_pedido']."</td>
+                            <td>".$row['id']."</td>
                             <td>".$row['id_mesa']."</td>
-                            <td><a href='../Modificaciones/VerPedido.php?idPlato=".$row['plato_id']."&idMesa=".$id_mesa."'><img src = '../icons/editar.png' width='20'></a></td>
-                    </tr>";
+                            <td><a href='../Modificaciones/VerPedido.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/lupa.png' width='20'></a></td>
+                            <td><a href='../Modificaciones/VerPedido.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/impresora.png' width='20'></a></td>
+                            <td><a href='../Modificaciones/VerPedido.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/boton.png' width='20'></a></td>
+
+                            </tr>";
                         }
 
                 ?>
