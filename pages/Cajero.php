@@ -1,16 +1,20 @@
 <?php
-    require('../conexion.php');
+require('../conexion.php');
 
-    session_start();
+session_start();
 
-    if(!isset($_SESSION["id_usuario"])) {
-		header("Location: Acceso.php");
-	}
+if (!isset($_SESSION["id_usuario"])) {
+    header("Location: Acceso.php");
+}else{
+    $id_usuario = $_SESSION["id_usuario"];
+    $nom_usuario = $_SESSION['nombres'];
+}
 ?>
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -22,34 +26,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-
-<style>
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../images/FondoMex.png');
-        background-size: 100% 78%;
-        background-repeat: no-repeat;
-        background-position: center 127px;
-        opacity: 0.5;
-        z-index: -1;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: rgb(252, 247, 230);
-        font-family: "Garamond", serif;
-        overflow-x: hidden;
-    }
-</style>
-
-
-
 
 
 <body>
@@ -77,60 +53,81 @@
 
 
 
-    <ul class="menu">
-        <li class="left"><a href="" class="icon-link">
-                <i class="fas fa-home"></i>
-                Cajero
-            </a></li>
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="" class="icon-link">
+                    <i class="fas fa-home"></i>Cajero: <?php echo $nom_usuario; ?></i>
+                    
+                </a></li>
 
 
             <li class="right">
-            <a href="cerrar_sesion.php" class="icon-link">
-                <i class="fa-solid fa-right-to-bracket" ></i>
-                Log out</a></li>
-    </ul><br>
-    
-    <div id="home" class="main-container">
-        <div class="container">
-            <section class="main-section">
+                <a href="cerrar_sesion.php" class="icon-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Cerrar Sesion</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
-                       
-            <h2>Pedidos</h2>
-                    <hr><br>
+    <div id="home" class="main-content">
 
-                <table >
+        <section class="main-section">
+
+
+            <div class="tables">
+                <h2>Visualizacion</h2>
+                <hr>
+            </div>
+
+            <div class="main-table">
+                <br>
+
+                <table>
                     <tr>
                         <th>Id Pedido</th>
                         <th>Num Mesa</th>
                         <th>Detalles</th>
-                        <th>Baucher</th>
                         <th>Estado</th>
-                       
+
                     </tr>
 
                     <?php
-                        $sql = "select
+                    $sql = "select
                                     pe.id, pe.id_mesa
                                 from 
                                     pedidos pe
                                 where 
                                     confirmacion_chef = true";
 
-                        $result = pg_query($conn, $sql);
+                    $result = pg_query($conn, $sql);
 
-                        while ($row = pg_fetch_assoc($result)) {
-                            echo "<tr>
-                            <td>".$row['id']."</td>
-                            <td>".$row['id_mesa']."</td>
-                            <td><a href='Factura.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/lupa.png' width='20'></a></td>
-                            <td><a href='Factura.php=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/impresora.png' width='20'></a></td>
-                            <td><a href='Factura.php?idPedido=".$row['id']."&idMesa=".$row['id_mesa']."'><img src = '../icons/boton.png' width='20'></a></td>
-
+                    while ($row = pg_fetch_assoc($result)) {
+                        echo "<tr>
+                            <td>" . $row['id'] . "</td>
+                            <td>" . $row['id_mesa'] . "</td>
+                            <td style='text-align: center;'>
+                            <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                <img src='../icons/lupa.png' width='20'>
+                            </a>
+                        </td>
+                    
+                        
+                        <td style='text-align: center;'>
+                            <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                <img src='../icons/boton.png' width='20'>
+                            </a>
+                        </td>
+                      
                             </tr>";
-                        }
+                    }
 
-                ?>
+                    ?>
                 </table>
+            </div>
+        </section>
+    </div>
 
 </body>
+
 </html>

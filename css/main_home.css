@@ -7,7 +7,7 @@ body {
 ul.menu {
     list-style: none;
     padding: 0;
-    background-color: #0000001a;
+    background-color: #9696964a;
 }
 
 ul.menu li {
@@ -233,16 +233,22 @@ ul.menu li ul li:hover a {
 }
 
 
+
 .puntero {
     position: absolute;
     width: 50px;
+    /* Ajusta el tamaño de la imagen */
     height: 50px;
-    background-image: url('images/flores.png');
+    /* Ajusta el tamaño de la imagen */
+    background-image: url('../images/flores.png');
     background-size: cover;
     display: none;
+    /* Oculta el puntero por defecto */
     pointer-events: none;
+    /* Evita que el puntero personalizado interfiera con elementos */
     animation: girar 2.5s infinite linear;
 }
+
 
 @keyframes girar {
     from {

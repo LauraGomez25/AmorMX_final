@@ -5,6 +5,9 @@ session_start();
 
 if (!isset($_SESSION["id_usuario"])) {
     header("Location: Acceso.php");
+}else{
+    $id_usuario = $_SESSION["id_usuario"];
+    $nom_usuario = $_SESSION['nombres'];
 }
 ?>
 
@@ -97,17 +100,22 @@ while ($row = pg_fetch_assoc($result)) {
 
 
 
-    <ul class="menu">
-        <li class="left"><a href="" class="icon-link">
-                <i class="fas fa-home"></i>
-                Administrador
-            </a></li>
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="" class="icon-link">
+                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
+                    
+                </a></li>
 
 
-        <li class="right"><a href="../pages/Administrador.php" class="icon-link">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Salir</a></li>
-    </ul><br>
+            <li class="right">
+                <a href="../pages/ReCategoria.php" class="icon-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Salir</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
 
     <div class="main-content">
@@ -127,13 +135,18 @@ while ($row = pg_fetch_assoc($result)) {
 
                 <div class="field">
                     <label for="fil_foto">Imagen:</label>
-                    <input type="file" name="fil_foto" id="fil_foto" value="<?php echo $imagen; ?>"
-                        onchange="mostrarVistaPrevia()">
+                    <div class="file-input-container" style="position: relative; overflow: hidden;">
+                        <input type="file" name="fil_foto" id="fil_foto" accept="image/*"
+                            onchange="mostrarVistaPrevia()">
+                    </div>
                 </div>
-                <div class="vista-previa">
+                <div id="contenedor_imagen" style="max-width: 30%; max-height: 30%; overflow: hidden;">
                     <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
-                        style="max-width: 300px; max-height: 300px;">
+                        style="max-width: 100%; height: auto; display: none; cursor: pointer;"
+                        onclick="abrirImagenEnVentana()">
                 </div>
+                <span id="mensaje_contenedor" class="mensaje"
+                    style="max-width: 100%; position: absolute; top: 0; left: 0; display: none;"></span>
 
 
 

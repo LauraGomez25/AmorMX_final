@@ -71,35 +71,8 @@ if (!empty($_POST)) {
     <link rel='stylesheet' href='../css/main_header.css'>
     <link rel='stylesheet' href='../css/main_cuerpo.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src='main.js'></script>
+    <script src='../main.js'></script>
 </head>
-
-<style>
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../images/FondoMex.png');
-        background-size: 100% 78%;
-        background-repeat: no-repeat;
-        background-position: center 127px;
-        opacity: 0.5;
-        z-index: -1;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: rgb(252, 247, 230);
-        font-family: "Garamond", serif;
-        overflow-x: hidden;
-    }
-</style>
-
-
 
 
 <body>
@@ -127,23 +100,23 @@ if (!empty($_POST)) {
     </header>
 
 
+    <nav>
+        <ul class="menu">
+            <li class="left">
+                <a href="../Index.html" class="icon-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
-    <ul class="menu">
-        <li class="left">
-            <a href="../Index.html" class="icon-link">
-                <i class="fas fa-home"></i>
-                Home
-            </a>
-        </li>
 
-
-    </ul><br>
-
-
-    <div id="home1" class="main-container">
+    <div id="home1" class="main-container access">
         <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo2">
         <div class="container">
-            <section class="main-section">
+            <section class="main-section ">
 
                 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
 
@@ -160,7 +133,7 @@ if (!empty($_POST)) {
                         <label for="pass">Contraseña:</label>
                         <div class="password-container">
                             <i id="toggle-password" class="fa-solid fa-eye-slash"
-                                style="color: #8c8388; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+                                style="color: #8c8388; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                             <input type="password" name="pass" id="pass" required>
                         </div>
                     </div>

@@ -1,17 +1,19 @@
 <?php
-    require('../conexion.php');
+require('../conexion.php');
 
-    session_start();
+session_start();
 
-    if(!isset($_SESSION["id_usuario"])) {
-		header("Location: Acceso.php");
-	}else{
-        $id_usuario = $_SESSION["id_usuario"];
-    }
+if (!isset($_SESSION["id_usuario"])) {
+    header("Location: Acceso.php");
+} else {
+    $id_usuario = $_SESSION["id_usuario"];
+    $nom_usuario = $_SESSION['nombres'];
+}
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -19,35 +21,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/main_header.css'>
     <link rel='stylesheet' href='../css/main_cuerpo.css'>
-    <script src='main.js'></script>
+    <script src='../main.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-
-<style>
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../images/FondoMex.png');
-        background-size: 100% 78%;
-        background-repeat: no-repeat;
-        background-position: center 127px;
-        opacity: 0.5;
-        z-index: -1;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: rgb(252, 247, 230);
-        font-family: "Garamond", serif;
-        overflow-x: hidden;
-    }
-</style>
 
 
 <body>
@@ -75,118 +52,127 @@
 
 
 
-    <ul class="menu">
-        <li class="left"><a href=""class="icon-link">
-                <i class="fas fa-home" ></i>
-                Mesero
-            </a></li>
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="" class="icon-link">
+                    <i class="fas fa-home"></i>Mesero: <?php echo $nom_usuario; ?></i>
+                   
+                </a></li>
 
 
             <li class="right">
-            <a href="cerrar_sesion.php" class="icon-link">
-                <i class="fa-solid fa-right-to-bracket" ></i>
-                Log out</a></li>
-    </ul><br>
+                <a href="Mesero.php" class="icon-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Mesas</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
-    
+
     <div class="main-content">
-        
-            <section class="main-section">
 
-                <form action="../Backend/GuardarPedido.php" method="POST">
+        <section class="main-section">
 
-                    <h2>Pedir Plato</h2>
-                    <hr><br>
+            <form action="../Backend/GuardarPedido.php" method="POST">
 
-                    <div class="field">
+            <div class="tables">
+                <h2>Pedir plato</h2>
+                <hr>
+            </div>
+            <br>
+
+                <div class="field">
 
                     <?php
-                        $id_mesa = $_GET['idMesa'];
+                    $id_mesa = $_GET['idMesa'];
                     ?>
-                    <input type="hidden" name="id_mesa" value="<?php  echo $id_mesa ?>" readonly="yes">
+                    <input type="hidden" name="id_mesa" value="<?php echo $id_mesa ?>" readonly="yes">
 
-                        <label for="Tipo">Tipo de plato:</label>
-                        <select type="Tipo" name="categoria" id="Tipo" required>
-                            <option value="">Seleccione</option>
-                            <?php
-                            require('../conexion.php');
+                    <label for="Tipo">Tipo de plato:</label>
+                    <select type="Tipo" name="categoria" id="Tipo" required>
+                        <option value="">Seleccione</option>
+                        <?php
+                        require('../conexion.php');
 
-                            // Prepare query
-                            $sql = "select * from categorias";
-                            // Execute sql
-                            $result = pg_query($conn, $sql);
+                        // Prepare query
+                        $sql = "select * from categorias";
+                        // Execute sql
+                        $result = pg_query($conn, $sql);
 
-                            if (!$result) {
-                                die("Error al ejecutar la consulta.");
+                        if (!$result) {
+                            die("Error al ejecutar la consulta.");
+                        }
+
+                        //$rows = $result->num_rows;
+                        $rows = pg_num_rows($result);
+                        if ($rows > 0) {
+                            while ($row = pg_fetch_assoc($result)) {
+                                echo '<option value="' . $row["id"] . '" required>' . $row["nombre_categoria"] . '</option>';
                             }
+                        }
+                        ?>
 
-                            //$rows = $result->num_rows;
-                            $rows = pg_num_rows($result);
-                            if ($rows > 0) {
-                                while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["id"] . '" required>' . $row["nombre_categoria"] . '</option>';
-                                }
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="Tipo">Nombre del plato:</label>
+                    <select type="Tipo" name="nombre" id="Tipo" required>
+                        <option value="">Seleccione</option>
+
+                        <?php
+                        require('../conexion.php');
+
+                        // Prepare query
+                        $sql = "select * from platos";
+                        // Execute sql
+                        $result = pg_query($conn, $sql);
+
+                        if (!$result) {
+                            die("Error al ejecutar la consulta.");
+                        }
+
+                        //$rows = $result->num_rows;
+                        $rows = pg_num_rows($result);
+                        if ($rows > 0) {
+                            while ($row = pg_fetch_assoc($result)) {
+                                echo '<option value="' . $row["id"] . '" required>' . $row["nombre"] . '</option>';
                             }
-                            ?>
-
-                        </select>
-                    </div>
-
-                    <div class="field">
-                        <label for="Tipo">Nombre del plato:</label>
-                        <select type="Tipo" name="nombre" id="Tipo" required>
-                            <option value="">Seleccione</option>
-
-                            <?php
-                            require('../conexion.php');
-
-                            // Prepare query
-                            $sql = "select * from platos";
-                            // Execute sql
-                            $result = pg_query($conn, $sql);
-
-                            if (!$result) {
-                                die("Error al ejecutar la consulta.");
-                            }
-
-                            //$rows = $result->num_rows;
-                            $rows = pg_num_rows($result);
-                            if ($rows > 0) {
-                                while ($row = pg_fetch_assoc($result)) {
-                                    echo '<option value="' . $row["id"] . '" required>' . $row["nombre"] . '</option>';
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                         
-                    <div class="field">
-                        <label for="text">Comentarios:</label>
-                        <input type="text" name="comentario" id="text" required>
-                    </div><br>
-
-                    <div class="field">
-                        <label for="number">Cantidad de platos:</label>
-                        <input type="number" name="cantidad" id="number" required>
-                    </div><br>
-
-                    <div class="boton">
-                        <button type="submit">Enviar</button>
-                        <button type="submit"><a href="Mesero.php">Mesas</a></button>
-                        <button type="submit"><a href="Mesero.php">Confirmar Pedido</a></button>
-                    </div><br>
+                        }
+                        ?>
+                    </select>
+                </div>
 
 
-                </form>
-            </section>
+                <div class="field">
+                    <label for="text">Comentarios:</label>
+                    <input type="text" name="comentario" id="text" required>
+                </div><br>
+
+                <div class="field">
+                    <label for="number">Cantidad de platos:</label>
+                    <input type="number" name="cantidad" id="number" required>
+                </div><br>
+
+                <div class="boton">
+                    <button type="submit">Enviar</button>
+                    <button type="submit"><a href="../Backend/ConfirmacionChef.php?idMesa=<?php echo $id_mesa ?>">Confirmar Pedido</a></button>
+                </div><br>
 
 
-            <section class="main-section">
+            </form>
+        </section>
+
+
+        <section class="main-section">
+        <div class="tables">
                 <h2>Visualizacion</h2>
-                    <hr><br>
+                <hr>
+            </div>
+            <br>
 
-                    <table >
+            <table>
                 <tr>
                     <th>Tipo Plato</th>
                     <th>Nombre Plato</th>
@@ -197,11 +183,13 @@
                 </tr>
                 <?php
                 $sql = "select 
+                            pe.id,
                             pm.id as plato_id,
                             u.cedula, m.numero_mesa,
                             pl.nombre as nombre_plato, 
                             pm.comentarios, pm.cantidad,
-                            c.nombre_categoria
+                            c.nombre_categoria,
+                            pe.confirmacion_chef
                         from 
                             pedidos pe inner join
                                 pedidos_mesa pm inner join
@@ -223,18 +211,27 @@
 
                 while ($row = pg_fetch_assoc($result)) {
                     echo "<tr>
-                    <td>".$row['nombre_categoria']."</td>
-                    <td>".$row['nombre_plato']."</td>
-                    <td>".$row['comentarios']."</td>
-                    <td>".$row['cantidad']."</td>
-                    <td><a href='../Backend/EliminarPlatoPedido.php?idPlato=".$row['plato_id']."&idMesa=".$id_mesa."'><img src = '../icons/editar.png' width='20'></a></td>
-              </tr>";
+                    <td>" . $row['nombre_categoria'] . "</td>
+                    <td>" . $row['nombre_plato'] . "</td>
+                    <td>" . $row['comentarios'] . "</td>
+                    <td>" . $row['cantidad'] . "</td>";
+                    
+                    if($row['confirmacion_chef'] == true){
+                        echo "<td><img src = '../icons/eliminar.png' width='20'></td>";
+                        
+                    }else{
+                        echo "<td><a href='../Backend/EliminarPlatoPedido.php?idPlato=" . $row['plato_id'] . "&idMesa=" . $id_mesa . "'><img src = '../icons/eliminar.png' width='20'></a></td>";
+                        echo "aqui";
+                    }
+
+                    echo "</tr>";
                 }
 
                 ?>
             </table>
-            </section>
-        </div>
-                       
+        </section>
+    </div>
+
 </body>
+
 </html>

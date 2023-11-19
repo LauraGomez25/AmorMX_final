@@ -3,34 +3,18 @@ body {
     font-family: "Garamond", serif;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
 
 .main-content {
-    position: relative;
+    position: absolute;
+    top: 24%;
     display: flex;
     flex-wrap: wrap;
-    /* Para que las secciones se ajusten en dispositivos más pequeños */
     justify-content: center;
     width: 100%;
+    padding: 20px 0;
 }
-
-
-.main-section {
-    background-color: rgba(200, 224, 238, 0.932);
-    padding: 2%;
-    border: 0.1% solid beige;
-    box-shadow: 0 0 10px rgb(114, 82, 148);
-    flex: 1;
-    margin: 0.5%;
-    max-width: calc(40% - 1%);
-    width: 100%;
-    /* Establece el ancho al 100% */
-    box-sizing: border-box;
-    /* Incluye el padding y el borde en el ancho total */
-}
-
 
 
 .logo2 {
@@ -41,12 +25,12 @@ body {
 }
 
 
-#home1.main-container {
+.main-container {
     text-align: left;
     /* Centra el contenido horizontalmente */
     margin-left: 20%;
     /* Agrega margen izquierdo negativo si es necesario para mover el contenido hacia la derecha */
-    margin-top: 0px;
+    margin-top: 150px;
     /* Opcional, agrega margen superior si es necesario */
     width: 110%;
 }
@@ -219,12 +203,14 @@ input[type="email"],
 input[type="number"],
 input[type="password"],
 textarea {
-    width: 95.5%;
     padding: 10px;
     border: 1px solid rgb(199, 115, 255);
     border-radius: 5px;
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    min-width: calc(90%);
+    max-width: calc(40% - 1%);
 }
 
 
@@ -279,12 +265,14 @@ select:hover {
 
 
 select {
-    width: 100%;
+
     padding: 7px;
     text-align: center;
     border: 1px solid rgb(199, 115, 255);
     border-radius: 5px;
     font-size: 16px;
+    min-width: calc(95%);
+    max-width: calc(40% - 1%);
 }
 
 
@@ -334,25 +322,136 @@ input[type="radio"] {
 }
 
 
+.category {
+    height: 450px;
+}
+
+.plate  {
+    height: 650px;
+}
+
+.registertables{
+    height: 240px;
+}
+
+.access{
+    right: 1%;
+    top: 10%;
+}
+
+
+.admin{
+    height: 380px;    
+}
+
+
+.employee{
+    height: 880px;    
+
+}
 
 /* Tablas */
 
-table {
-    width: 80%;
-    margin: 2% auto;
-    border-collapse: separate;
+
+
+
+.main-section {
+    max-height: 850px;
+    background-color: rgba(200, 224, 238, 0.932);
+    padding: 2%;
+    border: 0.1% solid beige;
+    box-shadow: 0 0 10px rgb(114, 82, 148);
+    flex: 1;
+    margin: 0.5%;
+    max-width: calc(40% - 1%);
+    width: 100%;
+    box-sizing: border-box;
+    min-width: calc(200px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
+
+.main-table {
+    overflow: auto;
+    padding: 2%;
+    margin: 0.5%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Ajustamos a un diseño de columna */
+    flex: 1; /* Hace que este contenedor crezca para ocupar el espacio disponible */
+}
+
+.main-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-table::-webkit-scrollbar-thumb {
+    background-color: #548955;
+    border-radius: 6px;
+    border: 1px solid #fff; /* Ajusta el grosor y color del borde según tus preferencias */
+}
+
+.tables {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    overflow: visible;
+}
+
+h2 {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+hr {
+    position: sticky;
+    top: 1%;
+    z-index: 1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+
 
 th,
 td {
-    border: 1px solid rgb(199, 115, 255);
+
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    position: sticky;
+    border: 1px solid rgb(184, 221, 188);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+    padding: 7px;
+    display: table-cell;
 }
 
+.main-section table td {
+    display: table-cell;
+}
+
+
+td a {
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-decoration: none;
+}
 
 
 tr:nth-child(even) {
@@ -360,7 +459,8 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-    background-color: rgba(97, 160, 97, 0.304); /* Puedes cambiar esto al color que desees para las filas impares */
+    background-color: rgba(97, 160, 97, 0.304);
+    /* Puedes cambiar esto al color que desees para las filas impares */
 }
 
 
@@ -374,4 +474,13 @@ a {
 
 a img {
     border: none;
+
+}
+
+.numero-mesa {
+    font-size: 18px;
+    /* Tamaño de fuente personalizado */
+    font-weight: bold;
+    /* Texto en negrita */
+    /* Otros estilos que desees aplicar */
 }

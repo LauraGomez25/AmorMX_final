@@ -5,7 +5,10 @@
 
     if(!isset($_SESSION["id_usuario"])) {
 		header("Location: Acceso.php");
-	}
+	}else{
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 <?php
@@ -100,18 +103,23 @@
     </header>
 
 
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="" class="icon-link">
+                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
+                    
+                </a></li>
 
-    <ul class="menu">
-        <li class="left"><a href="" class="icon-link">
-                <i class="fas fa-home"></i>
-                Administrador
-            </a></li>
 
+            <li class="right">
+                <a href="../pages/RePlato.php" class="icon-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Salir</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
-        <li class="right"><a href="../pages/Administrador.php" class="icon-link">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Salir</a></li>
-    </ul><br>
 
 
     <div class="main-content">

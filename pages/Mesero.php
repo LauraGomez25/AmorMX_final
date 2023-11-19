@@ -21,35 +21,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='../css/main_header.css'>
     <link rel='stylesheet' href='../css/main_cuerpo.css'>
-    <script src='main.js'></script>
+    <script src='../main.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-
-<style>
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../images/FondoMex.png');
-        background-size: 100% 78%;
-        background-repeat: no-repeat;
-        background-position: center 127px;
-        opacity: 0.5;
-        z-index: -1;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: rgb(252, 247, 230);
-        font-family: "Garamond", serif;
-        overflow-x: hidden;
-    }
-</style>
 
 <body>
     <header>
@@ -74,28 +49,32 @@
         </div>
     </header>
 
-    <ul class="menu">
-        <li class="left"><a href="" class="icon-link">
-            <i class="fas fa-home"></i>Mesero: <?php echo $nom_usuario; ?></a></li>
+    <nav>
+        <ul class="menu">
+            <li class="left"><a href="" class="icon-link">
+                    <i class="fas fa-home"></i>Mesero: <?php echo $nom_usuario; ?></i>
+                    
+                </a></li>
 
-        <li class="right">
-            <a href="cerrar_sesion.php" class="icon-link">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Log out
-            </a>
-        </li>
-    </ul><br>
 
-    <div id="home" class="main-container">
-        <div class="container">
+            <li class="right">
+                <a href="cerrar_sesion.php" class="icon-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Cerrar Sesion</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+
+    <div id="home" class="main-content">
+        
             <section class="main-section">
 
                 <form action="../PedirPlato.php" method="POST">
 
                     <h2>Mesas</h2>
                     <hr><br>
-                   
-
+                
                     <table border="1" align="center">
                      
                         <?php
