@@ -94,7 +94,7 @@ if (!isset($_SESSION["id_usuario"])) {
                 <div id="contenedor_imagen" style="max-width: 30%; max-height: 30%; overflow: hidden;">
                     <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
                         style="max-width: 100%; height: auto; display: none; cursor: pointer;"
-                        onclick="abrirImagenEnVentana()">
+                        onclick="abrirImagenEnVentana()" require>
                 </div>
                 <span id="mensaje_contenedor" class="mensaje"
                     style="max-width: 100%; position: absolute; top: 0; left: 0; display: none;">Ningún archivo

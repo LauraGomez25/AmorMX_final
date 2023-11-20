@@ -83,7 +83,7 @@ if (!isset($_SESSION["id_usuario"])) {
                 <h2>Registros</h2>
                 <hr>
             </div>
-            <br>
+            
 
             <ul class="services-list">
                 <li class="service">
@@ -121,7 +121,7 @@ if (!isset($_SESSION["id_usuario"])) {
                 <h2>Otras opciones de Administrador</h2>
                 <hr>
             </div>
-            <br>
+            
 
             <ul class="services-list">
                 <li class="service">

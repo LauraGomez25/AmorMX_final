@@ -73,8 +73,9 @@
                 <form action="../PedirPlato.php" method="POST">
 
                     <h2>Mesas</h2>
-                    <hr><br>
+                    <hr>
                 
+                    <div class="main-tables">
                     <table border="1" align="center">
                      
                         <?php
@@ -102,26 +103,39 @@
                                     $mesaUsuario = $row_mesaUsuario['mesau']; 
                                 }
 
-                                if($mesax == 0){
-                                    echo "<td><br>&nbsp;&nbsp;
-                                            <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mLibre.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
-                                }elseif($mesaUsuario > 0){
-                                    echo "<td><br>&nbsp;&nbsp;
-                                            <a href='PedirPlatoM.php?idMesa=".$row['id']."'><img src = '../icons/mOcupada.png' width='30' ></a>&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
-                                }else{
-                                    echo "<td><br>&nbsp;&nbsp;
-                                            <img src = '../icons/mOcupada.png' width='30' >&nbsp;&nbsp;<br>".$row['numero_mesa']."</td>";
+                                if ($mesax == 0) {
+                                    echo "<td class='numero-mesa'>
+                                      <a href='PedirPlatoM.php?idMesa=" . $row['id'] . "'>
+                                          <img src='../icons/mNegra.png' width='30'> 
+                                          <span class='numero'>" . $row['numero_mesa'] . "</span>
+                                      </a>
+                                    </td>";
+                                } elseif ($mesaUsuario > 0) {
+                                    echo "<td class='numero-mesa'>
+                                      <a href='PedirPlatoM.php?idMesa=" . $row['id'] . "'>
+                                          <img src='../icons/mVerde.png' width='30'>
+                                          <span class='numero'>" . $row['numero_mesa'] . "</span>
+                                      </a>
+                                    </td>";
+                                } else {
+                                    echo "<td class='numero-mesa'>
+                                      <a href='#'>
+                                          <img src='../icons/mRoja.png' width='30'>
+                                          <span class='numero'>" . $row['numero_mesa'] . "</span>
+                                      </a>
+                                    </td>";
                                 }
-
-                                $count+=1;
-                                if($count % 5 == 0){
+        
+                                $count += 1;
+                                if ($count % 5 == 0) {
                                     echo "</tr><tr>";
-                                }        
+                                }
+         
                             }
                             echo "</tr>";
                         ?>
                     </table>
-
+                        </div>
                 </form>
 
             </section>

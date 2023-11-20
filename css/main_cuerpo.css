@@ -353,8 +353,6 @@ input[type="radio"] {
 /* Tablas */
 
 
-
-
 .main-section {
     max-height: 850px;
     background-color: rgba(200, 224, 238, 0.932);
@@ -374,14 +372,27 @@ input[type="radio"] {
 
 .main-table {
     overflow: auto;
-    padding: 2%;
+    padding-right: 2%;
     margin: 0.5%;
     box-sizing: border-box;
     position: relative;
     display: flex;
-    flex-direction: column; /* Ajustamos a un diseño de columna */
-    flex: 1; /* Hace que este contenedor crezca para ocupar el espacio disponible */
+    flex-direction: column;
+    flex: 1;
 }
+.main-tables td {
+    height: 65px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.main-table table {
+    margin-top: 0; /* Ajusta según sea necesario para eliminar el espacio superior de la tabla */
+}
+
 
 .main-table::-webkit-scrollbar {
     width: 6px;
@@ -390,7 +401,7 @@ input[type="radio"] {
 .main-table::-webkit-scrollbar-thumb {
     background-color: #548955;
     border-radius: 6px;
-    border: 1px solid #fff; /* Ajusta el grosor y color del borde según tus preferencias */
+    border: 1px solid #fff;
 }
 
 .tables {
@@ -421,12 +432,13 @@ table {
 
 
 
+
 th,
 td {
 
     text-align: center;
     width: 50px;
-    height: 50px;
+    height: 30px;
     position: sticky;
     border: 1px solid rgb(184, 221, 188);
     border-radius: 5px;
@@ -460,7 +472,6 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background-color: rgba(97, 160, 97, 0.304);
-    /* Puedes cambiar esto al color que desees para las filas impares */
 }
 
 
@@ -468,9 +479,6 @@ th {
     background-color: rgba(34, 139, 34, 0.479);
 }
 
-a {
-    text-decoration: none;
-}
 
 a img {
     border: none;
@@ -478,9 +486,52 @@ a img {
 }
 
 .numero-mesa {
+    text-align: center;
+    line-height: 30px;
+}
+
+.icono-numero {
+    display: block;
+    margin-bottom: -5px;
+}
+
+.numero-mesa:hover .numero {
+    color: #9f2d2d;
+}
+
+.numero-mesa .icono-numero img {
+    vertical-align: middle;
+}
+
+.icono-numero img {
+    vertical-align: middle;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+.numero {
+    margin-top: 5px;
+    color: black;
     font-size: 18px;
-    /* Tamaño de fuente personalizado */
     font-weight: bold;
-    /* Texto en negrita */
-    /* Otros estilos que desees aplicar */
+    margin: 0;
+    padding: 0;
 }

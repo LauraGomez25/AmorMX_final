@@ -84,6 +84,7 @@ if (!isset($_SESSION["id_usuario"])) {
             </div>
             <br>
 
+            <div class= "main-table">
                 <table>
                     <tr>
                         <th>Id Pedido</th>
@@ -108,13 +109,14 @@ if (!isset($_SESSION["id_usuario"])) {
                             <td>" . $row['id'] . "</td>
                             <td>" . $row['id_mesa'] . "</td>
                             <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
-                <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
+                            <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
 
                             </tr>";
                     }
 
                     ?>
                 </table>
+                </div>
             </section>
         </div>
     </div>

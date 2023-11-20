@@ -96,7 +96,7 @@ if (!isset($_SESSION["id_usuario"])) {
                             <th>Nombre Plato</th>
                             <th>Comentarios</th>
                             <th>Cantidad</th>
-                            <th>Visualizar</th>
+                          
                         </tr>
 
                         <?php
@@ -126,24 +126,25 @@ if (!isset($_SESSION["id_usuario"])) {
 
                         while ($row = pg_fetch_assoc($result)) {
                             echo "<tr>
-                            <td>" . $row['nombre_categoria'] . "</td>
-                            <td>" . $row['nombre_plato'] . "</td>
-                            <td>" . $row['comentarios'] . "</td>
-                            <td>" . $row['cantidad'] . "</td>
-                            <td>
-                            <div>
-                               
-                                    <i class='fa-solid fa-print' style='color: #ac539c;'></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>";
+                                    <td>" . $row['nombre_categoria'] . "</td>
+                                    <td>" . $row['nombre_plato'] . "</td>
+                                    <td>" . $row['comentarios'] . "</td>
+                                    <td>" . $row['cantidad'] . "</td>
+                                  </tr>";
                             //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
                         
                         }
 
                         ?>
-                    </table>
+                                            </table>
+                    <br>
+                    <div style='text-align: center;'>
+                        <a href='../Backend/generar_factura_pdf.php?id_mesa=$id_pedido' target='_blank'
+                            title='Descargar e Imprimir Factura'>
+                            <i class='fa-solid fa-print' style='color: #ac539c; font-size: 19px;'></i>
+                            Imprimir Factura
+                        </a>
+                    </div>
 
         </section>
     </div>
