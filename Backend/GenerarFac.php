@@ -106,8 +106,7 @@ if (!is_dir($directorio_destino)) {
 
 if (file_exists($archivo_pdf)) {
    die("<script>alert('La factura ya se genero');</script>");
-   header("Refresh:0;url=http://localhost/AmorMX_final/pages/Cajero.php, true, 301");
-   exit();
+   header("Refresh:0;url=http://localhost/AmorMX_final/pages/Cajero.php");
 }   
 
 

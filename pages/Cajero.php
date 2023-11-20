@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else{
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else{
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 
@@ -56,9 +56,8 @@ if (!isset($_SESSION["id_usuario"])) {
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>Cajero: <?php echo $nom_usuario; ?></i>
-                    
-                </a></li>
+                    <i class="fas fa-home"></i>Cajero: <?php echo $nom_usuario; ?></i></a>
+            </li>
 
 
             <li class="right">
@@ -67,21 +66,17 @@ if (!isset($_SESSION["id_usuario"])) {
                     Cerrar Sesion</a>
             </li>
         </ul>
-    </nav>
-    <br>
+    </nav><br>
 
     <div id="home" class="main-content">
-
         <section class="main-section">
-
 
             <div class="tables">
                 <h2>Visualizacion</h2>
                 <hr>
             </div>
 
-            <div class="main-table">
-                <br>
+            <div class="main-table"><br>
 
                 <table>
                     <tr>
@@ -93,41 +88,38 @@ if (!isset($_SESSION["id_usuario"])) {
                     </tr>
 
                     <?php
-                    $sql = "select
-                                    pe.id, pe.id_mesa
-                                from 
-                                    pedidos pe
-                                where 
-                                    confirmacion_chef = true";
+                        $sql = "select
+                                        pe.id, pe.id_mesa
+                                    from 
+                                        pedidos pe
+                                    where 
+                                        confirmacion_chef = true";
 
-                    $result = pg_query($conn, $sql);
+                        $result = pg_query($conn, $sql);
 
-                    while ($row = pg_fetch_assoc($result)) {
-                        echo "<tr>
-                            <td>" . $row['id'] . "</td>
-                            <td>" . $row['id_mesa'] . "</td>
-                            <td style='text-align: center;'>
-                            <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                                <img src='../icons/lupa.png' width='20'>
-                            </a>
-                        </td>
-                    
-                        
-                        <td style='text-align: center;'>
-                            <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                                <img src='../icons/boton.png' width='20'>
-                            </a>
-                        </td>
-                      
-                            </tr>";
-                    }
-
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                                    <td>" . $row['id'] . "</td>
+                                    <td>" . $row['id_mesa'] . "</td>
+                                    <td style='text-align: center;'>
+                                    <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                        <img src='../icons/lupa.png' width='20'>
+                                    </a></td>
+                                    <td style='text-align: center;'>
+                                        <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                            <img src='../icons/boton.png' width='20'>
+                                        </a>
+                                    </td>
+                                   </tr>";
+                        }
                     ?>
+
                 </table>
+
             </div>
+            
         </section>
     </div>
 
 </body>
-
 </html>

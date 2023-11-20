@@ -98,7 +98,6 @@ if (!empty($_POST)) {
         </div>
     </header>
 
-
     <nav>
         <ul class="menu">
             <li class="left">
@@ -108,45 +107,43 @@ if (!empty($_POST)) {
                 </a>
             </li>
         </ul>
-    </nav>
-    <br>
+    </nav><br>
 
 
     <div id="home1" class="main-container access">
         <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo2">
-        <div class="container">
-            <section class="main-section ">
+            <div class="container">
+                <section class="main-section ">
 
-                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
 
-                    <h2>Acceso</h2>
-                    <hr><br>
+                        <h2>Acceso</h2>
+                        <hr><br>
 
-                    <div class="field">
-                        <label for="id">Identificacion:</label>
-                        <input type="number" name="dni" id="id" required>
-                    </div><br>
+                        <div class="field">
+                            <label for="id">Identificacion:</label>
+                            <input type="number" name="dni" id="id" required>
+                        </div><br>
 
-
-                    <div class="field">
-                        <label for="pass">Contraseña:</label>
-                        <div class="password-container">
-                            <i id="toggle-password" class="fa-solid fa-eye-slash"
-                                style="color: #8c8388; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                            <input type="password" name="pass" id="pass" required>
+                        <div class="field">
+                            <label for="pass">Contraseña:</label>
+                            <div class="password-container">
+                                <i id="toggle-password" class="fa-solid fa-eye-slash"
+                                    style="color: #8c8388; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+                                <input type="password" name="pass" id="pass" required>
+                            </div>
                         </div>
-                    </div>
-                    <script src="../main.js"></script>
+                        <script src="../main.js"></script>
 
-                    <div class="boton">
-                        <button type="submit">Acceder</button>
-                    </div>
+                        <div class="boton">
+                            <button type="submit">Acceder</button>
+                        </div>
 
-                </form>
+                    </form>
 
-            </section>
-        </div>
+                </section>
+            </div>
+    </div>
 
 </body>
-
 </html>

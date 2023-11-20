@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 
@@ -61,28 +61,21 @@ if (!isset($_SESSION["id_usuario"])) {
                     Chef
                 </a></li>
 
-
             <li class="right">
                 <a href="cerrar_sesion.php" class="icon-link">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     Cerrar Sesion</a>
             </li>
         </ul>
-    </nav>
-    <br>
-
-
-
+    </nav><br>
 
     <div id="services" class="main-content">
-
-            <section class="main-section">
+        <section class="main-section">
 
             <div class="tables">
                 <h2>Pedidos</h2>
                 <hr>
-            </div>
-            <br>
+            </div><br>
 
             <div class= "main-table">
                 <table>
@@ -91,37 +84,33 @@ if (!isset($_SESSION["id_usuario"])) {
                         <th>Num Mesa</th>
                         <th>Detalles</th>
                         <th>Estado</th>
-
                     </tr>
 
                     <?php
-                    $sql = "select
-                                    pe.id, pe.id_mesa
-                                from 
-                                    pedidos pe
-                                where 
-                                    confirmacion_chef = true";
+                        $sql = "select
+                                        pe.id, pe.id_mesa
+                                    from 
+                                        pedidos pe
+                                    where 
+                                        confirmacion_chef = true";
 
-                    $result = pg_query($conn, $sql);
+                        $result = pg_query($conn, $sql);
 
-                    while ($row = pg_fetch_assoc($result)) {
-                        echo "<tr>
-                            <td>" . $row['id'] . "</td>
-                            <td>" . $row['id_mesa'] . "</td>
-                            <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
-                            <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
-
-                            </tr>";
-                    }
-
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                                    <td>" . $row['id'] . "</td>
+                                    <td>" . $row['id_mesa'] . "</td>
+                                    <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
+                                    <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
+                                </tr>";
+                        }
                     ?>
+
                 </table>
-                </div>
-            </section>
-        </div>
+            </div>
+            
+        </section>
     </div>
 
-
 </body>
-
 </html>

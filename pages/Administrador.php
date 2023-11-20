@@ -78,9 +78,8 @@
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
+                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i></a>
             </li>
-
 
             <li class="right">
                 <a href="cerrar_sesion.php" class="icon-link">
@@ -88,9 +87,7 @@
                     Cerrar Sesion</a>
             </li>
         </ul>
-    </nav>
-    <br>
-
+    </nav><br>
 
     <div class="main-content">
         <section class="main-section admin">
@@ -141,8 +138,8 @@
         <section class="main-section admin">
 
             <div class="tables">
-                    <h2>Otras opciones de Administrador</h2>
-                    <hr>
+                <h2>Otras opciones de Administrador</h2>
+                <hr>
             </div>
                 
                 <ul class="services-list">
@@ -172,10 +169,10 @@
                     </li>
 
                 </ul>
+
         </section>
 
     </div>
 
 </body>
-
 </html>
