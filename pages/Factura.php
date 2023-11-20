@@ -1,14 +1,30 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-} else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+        $tipoUsuario = $_SESSION['id_tipo_usuario'];
+
+        if($tipoUsuario != 1){
+            switch ($tipoUsuario) {
+                
+                case 2:
+                    header("Location: Mesero.php");
+                    break;
+                case 3:
+                    header("Location: Chef.php");
+                    break;
+                case 4:
+                    header("Location: Cajero.php");
+                    break;
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +103,8 @@ if (!isset($_SESSION["id_usuario"])) {
                     u.cedula, m.numero_mesa,
                     pl.nombre as nombre_plato, pl.precio,
                     pm.comentarios, pm.cantidad,
-                    c.nombre_categoria
+                    c.nombre_categoria,
+                    u.nombre_completo
                 FROM 
                     pedidos pe INNER JOIN
                     pedidos_mesa pm INNER JOIN
@@ -95,7 +112,7 @@ if (!isset($_SESSION["id_usuario"])) {
                     platos pl ON pl.id = pm.id_plato
                     ON pe.id = pm.id_pedido INNER JOIN 
                     mesas m ON m.id = pe.id_mesa INNER JOIN 
-                    usuarios u ON u.id = pe.id_usuario
+                    usuarios u ON u.id = pe.id_usuario 
                 WHERE 
                     pe.estado_pedido = true AND 
                     pe.id = $id_pedido";
@@ -120,6 +137,8 @@ if (!isset($_SESSION["id_usuario"])) {
                             $cantidad = $row['cantidad'];
                             $precio_total = $precio_unitario * $cantidad;
                             $totalFactura += $precio_total;
+                            $nombreM = $row['nombre_completo'];
+                            echo $nombreM;
 
                             echo "<tr>
                                 <td>" . $row['nombre_categoria'] . "</td>
@@ -137,13 +156,38 @@ if (!isset($_SESSION["id_usuario"])) {
                     </table>
                 </div>";
 
-                        echo "<div style='text-align: center;'>
-                            <a href='../Backend/generar_factura_pdf.php?id_mesa=$id_pedido'
-                                target='_blank' title='Descargar e Imprimir Factura'>
-                                <i class='fa-solid fa-print' style='color: #ac539c; font-size: 19px;'></i>
-                                Imprimir Factura
-                            </a>
-                        </div>";
+                echo "<div style='text-align: center; display: flex; justify-content: space-around;'>
+                <a href='../Backend/GenerarFac.php?idPedido=$id_pedido' target='_blank' title='Descargar e Imprimir Factura'>
+                    <i class='fa-solid fa-print' style='color: #ac539c; font-size: 29px; margin: 10px'></i> Imprimir Factura
+                </a>
+            
+                <a href='../Backend/EnviarFac.php' onclick='mostrarFormulario();' title='Enviar Factura'>
+                    <img src='../icons/email.jpg' alt=''> Enviar Factura
+                     </a>
+                    </div>";
+
+                    echo "<div id='formularioCorreo' style='display:none; text-align: center;'>
+               <form action='../Backend/EnviarFactura.php' method='post'>
+                   <label for='correo'>Correo Electrónico:</label>
+                   <input type='email' id='correo' name='correo' required>
+                  <input type='hidden' name='idPedido' value='<?php echo $id_pedido; ?>'>
+                 <br>
+                <div class='boton'>
+                 <button type='submit'>Enviar Factura</button>
+                </div>
+              </form>
+            </div>";
+
+                    echo "<script>
+              function mostrarFormulario() {
+                  var correo = prompt('Ingrese su correo electrónico:');
+                if (correo !== null) {
+                document.getElementById('correo').value = correo;
+               document.getElementById('formularioCorreo').style.display = 'block';
+                }
+             }
+
+             </script>";
                     } else {
                         echo "Error en la consulta SQL: " . pg_last_error($conn);
                     }
@@ -151,6 +195,21 @@ if (!isset($_SESSION["id_usuario"])) {
                     echo "La variable \$id_pedido no está definida o está vacía.";
                 }
                 ?>
+
+                <div class="field">
+                    <label for="Tipo">Tipo de pago:</label>
+                    <select type="select" name="rol" id="Tipo" required>
+                        <option value="">Seleccione</option>
+                        <option value="1">Efectivo</option>
+                        <option value="2">Transferencia</option>
+                        <option value="3">Tarjeta</option>
+                    </select>
+                </div>
+
+                <div class="boton">
+                    <button type="submit">Pagar</button>
+                </div><br>
+                
             </div>
         </section>
     </div>

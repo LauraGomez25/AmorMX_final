@@ -216,12 +216,17 @@ if (!isset($_SESSION["id_usuario"])) {
                     <td>" . $row['comentarios'] . "</td>
                     <td>" . $row['cantidad'] . "</td>";
                     
-                    if($row['confirmacion_chef'] == true){
-                        echo "<td><img src = '../icons/eliminar.png' width='20'></td>";
-                        
+                    $sql_validarChef = "select id, confirmacion_chef from pedidos where  id = {$row['id']} limit 1";
+                    $result_validarChef = pg_query($conn, $sql_validarChef);
+
+                    while ($row_validarChef = pg_fetch_assoc($result_validarChef)) {
+                        $confirmacionChef = $row_validarChef['confirmacion_chef'];
+                    }
+
+                    if($confirmacionChef == 't'){
+                        echo "<td><img src = '../icons/eliminar.png' width='20'></td>";                       
                     }else{
                         echo "<td><a href='../Backend/EliminarPlatoPedido.php?idPlato=" . $row['plato_id'] . "&idMesa=" . $id_mesa . "'><img src = '../icons/eliminar.png' width='20'></a></td>";
-                        echo "aqui";
                     }
 
                     echo "</tr>";

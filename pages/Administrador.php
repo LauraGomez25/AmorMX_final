@@ -1,14 +1,30 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+        $tipoUsuario = $_SESSION['id_tipo_usuario'];
+
+        if($tipoUsuario != 1){
+            switch ($tipoUsuario) {
+                
+                case 2:
+                    header("Location: Mesero.php");
+                    break;
+                case 3:
+                    header("Location: Chef.php");
+                    break;
+                case 4:
+                    header("Location: Cajero.php");
+                    break;
+            }
+        }
+    }
 ?>
 
 
@@ -63,7 +79,7 @@ if (!isset($_SESSION["id_usuario"])) {
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
                     <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                </a></li>
+            </li>
 
 
             <li class="right">
@@ -73,83 +89,92 @@ if (!isset($_SESSION["id_usuario"])) {
             </li>
         </ul>
     </nav>
-
     <br>
 
 
     <div class="main-content">
         <section class="main-section admin">
-        <div class="tables">
-                <h2>Registros</h2>
-                <hr>
-            </div>
-            
 
-            <ul class="services-list">
-                <li class="service">
-                    <a href="../pages/ReEmpleados.php">
-                        <div class="service-content">
-                            <p>Registrar Empleado</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="service">
-                    <a href="../pages/ReCategoria.php">
-                        <div class="service-content">
-                            <p>Registrar Categoria Menu</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="service">
-                    <a href="../pages/ReMesas.php">
-                        <div class="service-content">
-                            <p>Registrar Mesas</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="service">
-                    <a href="../pages/RePlato.php">
-                        <div class="service-content">
-                            <p>Registrar Plato</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+            <div class="tables">
+                    <h2>Registros</h2>
+                    <hr>
+            </div>
+                
+                <ul class="services-list">
+
+                    <li class="service">
+                        <a href="../pages/ReEmpleados.php">
+                            <div class="service-content">
+                                <p>Registrar Empleado</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="service">
+                        <a href="../pages/ReCategoria.php">
+                            <div class="service-content">
+                                <p>Registrar Categoria Menu</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="service">
+                        <a href="../pages/ReMesas.php">
+                            <div class="service-content">
+                                <p>Registrar Mesas</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="service">
+                        <a href="../pages/RePlato.php">
+                            <div class="service-content">
+                                <p>Registrar Plato</p>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+
         </section>
+
         <section class="main-section admin">
-        <div class="tables">
-                <h2>Otras opciones de Administrador</h2>
-                <hr>
+
+            <div class="tables">
+                    <h2>Otras opciones de Administrador</h2>
+                    <hr>
             </div>
-            
+                
+                <ul class="services-list">
 
-            <ul class="services-list">
-                <li class="service">
-                    <a href="Mesero.php">
-                        <div class="service-content">
-                            <p>Mesero</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="service">
-                    <a href="Chef.php">
-                        <div class="service-content">
-                            <p>Chef</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="service">
-                    <a href="Cajero.php">
-                        <div class="service-content">
-                            <p>Cajero</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                    <li class="service">
+                        <a href="Mesero.php">
+                            <div class="service-content">
+                                <p>Mesero</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="service">
+                        <a href="Chef.php">
+                            <div class="service-content">
+                                <p>Chef</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="service">
+                        <a href="Cajero.php">
+                            <div class="service-content">
+                                <p>Cajero</p>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
         </section>
+
     </div>
-
-
 
 </body>
 

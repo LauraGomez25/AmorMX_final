@@ -1,10 +1,10 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (isset($_SESSION["id_usuario"])) {
-    header("Location: Administrador.php");
+    if (isset($_SESSION["id_usuario"])) {
+        header("Location: Administrador.php");
 }
 
 if (!empty($_POST)) {
@@ -28,7 +28,7 @@ if (!empty($_POST)) {
             $_SESSION['id_usuario'] = $row['id'];
             $_SESSION['nombres'] = $row['nombre_completo'];
             $_SESSION['cedula'] = $row['cedula'];
-
+            $_SESSION['id_tipo_usuario'] = $row['id_tipo_usuario'];
             $tipoUsuario = $row['id_tipo_usuario'];
         }
 
@@ -46,7 +46,6 @@ if (!empty($_POST)) {
                 header("Location: Cajero.php");
                 break;
         }
-
 
     } else {
         echo "<script>alert('Datos incorrectos');</script>";
