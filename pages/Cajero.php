@@ -51,8 +51,6 @@
         </div>
     </header>
 
-
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
@@ -83,8 +81,6 @@
                         <th>Id Pedido</th>
                         <th>Num Mesa</th>
                         <th>Detalles</th>
-                        <th>Estado</th>
-
                     </tr>
 
                     <?php
@@ -104,13 +100,8 @@
                                     <td style='text-align: center;'>
                                     <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
                                         <img src='../icons/lupa.png' width='20'>
-                                    </a></td>
-                                    <td style='text-align: center;'>
-                                        <a href='Factura.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                                            <img src='../icons/boton.png' width='20'>
-                                        </a>
-                                    </td>
-                                   </tr>";
+                                    </a></td>                        
+                                 </tr>";
                         }
                     ?>
 

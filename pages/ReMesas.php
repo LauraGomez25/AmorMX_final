@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +26,7 @@ if (!isset($_SESSION["id_usuario"])) {
 
 </head>
 
-
 <body>
-
     <header>
         <div class="image-container">
             <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo">
@@ -51,21 +49,17 @@ if (!isset($_SESSION["id_usuario"])) {
         </div>
     </header>
 
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
                     <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                </a></li>
-
+            </a></li>
 
             <li class="right"><a href="../pages/Administrador.php" class="icon-link">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    Salir</a></li>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Salir</a></li>
         </ul>
-    </nav>
-    <br>
-
+    </nav><br>
 
     <div class="main-content">
         <section class="main-section registertables">
@@ -102,35 +96,30 @@ if (!isset($_SESSION["id_usuario"])) {
                 <table>
                     <tr>
                         <th>Mesas</th>
-
                     </tr>
+
                     <?php
-                    $sql = "select 
-                                            *
-                                    from 
-                                            mesas";
+                        $sql = "select 
+                                        *
+                                from 
+                                        mesas";
 
-                    $result = pg_query($conn, $sql);
+                        $result = pg_query($conn, $sql);
 
-                    while ($row = pg_fetch_assoc($result)) {
-                        echo "<tr>
-
-                        <td style='text-align: center;'>
-                           <a href='#?idUser=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                               <img src='../icons/mlibre.png' width='30'>
-                           </a>
-                         </td>
-                                    </tr>";
-                    }
-
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                                    <td style='text-align: center;'>
+                                    <a href='#?idUser=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                        <img src='../icons/mNegra.png' width='30'>
+                                    </a>
+                                    </td>
+                                </tr>";
+                        }
                     ?>
                 </table>
             </div>
         </section>
     </div>
     <br><br>
-
-
 </body>
-
 </html>

@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,23 +49,18 @@ if (!isset($_SESSION["id_usuario"])) {
         </div>
     </header>
 
-
-
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
                     <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                </a></li>
-
+            </a></li>
 
             <li class="right"><a href="../pages/Administrador.php" class="icon-link">
                     <i class="fa-solid fa-right-to-bracket"></i>
-                    Salir</a></li>
+                    Salir
+            </a></li>
         </ul>
-    </nav>
-    <br>
-
+    </nav><br>
 
     <div class="main-content">
         <section class="main-section employee">
@@ -85,12 +80,10 @@ if (!isset($_SESSION["id_usuario"])) {
                     <input type="number" name="dni" id="id" required>
                 </div><br>
 
-
                 <div class="field">
                     <label for="email">Correo electronico:</label>
                     <input type="email" name="email" id="email" required>
                 </div><br>
-
 
                 <div class="field">
                     <label for="phone">Telefono:</label>
@@ -128,18 +121,14 @@ if (!isset($_SESSION["id_usuario"])) {
                 </div>
 
             </form>
-
         </section>
 
         <section class="main-section employee">
 
-
             <div class="tables">
                 <h2>Visualizacion</h2>
                 <hr>
-            </div>
-            <br>
-
+            </div><br>
 
             <div class="main-table">
                 <table>
@@ -149,39 +138,37 @@ if (!isset($_SESSION["id_usuario"])) {
                         <th>Telefono</th>
                         <th>..</th>
                     </tr>
+
                     <?php
 
-                    $sql = "select 
-                                            u.id, u.nombre_completo, u.telefono,
-                                            tu.nombre_tipo
-                                    from 
-                                            usuarios u inner join
-                                                tipo_usuario tu
-                                            on tu.id = u.id_tipo_usuario
-                                    order by id_tipo_usuario";
+                        $sql = "select 
+                                        u.id, u.nombre_completo, u.telefono,
+                                        tu.nombre_tipo
+                                from 
+                                        usuarios u inner join
+                                            tipo_usuario tu
+                                        on tu.id = u.id_tipo_usuario
+                                order by id_tipo_usuario";
 
-                    $result = pg_query($conn, $sql);
+                        $result = pg_query($conn, $sql);
 
-                    while ($row = pg_fetch_assoc($result)) {
-                        echo "<tr>
-                                            <td>" . $row['nombre_completo'] . "</td>
-                                            <td>" . $row['nombre_tipo'] . "</td>
-                                            <td>" . $row['telefono'] . "</td>
-                                            <td style='text-align: center;'>
-                                              <a href='../Modificaciones/EditarEmp.php?idUser=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                                                <img src='../icons/editar.png' width='20'>
-                                              </a>
-                                            </td>
-                                      </tr>";
-                    }
-
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                                    <td>" . $row['nombre_completo'] . "</td>
+                                    <td>" . $row['nombre_tipo'] . "</td>
+                                    <td>" . $row['telefono'] . "</td>
+                                    <td style='text-align: center;'>
+                                    <a href='../Modificaciones/EditarEmp.php?idUser=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                        <img src='../icons/editar.png' width='20'>
+                                    </a>
+                                    </td>
+                                </tr>";
+                        }
                     ?>
                 </table>
             </div>
         </section>
     </div>
     <br><br>
-
 </body>
-
 </html>

@@ -51,21 +51,18 @@
         </div>
     </header>
 
-
-
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
                     <i class="fas fa-home"></i>
                     Chef
-                </a></li>
+            </a></li>
 
             <li class="right">
                 <a href="cerrar_sesion.php" class="icon-link">
                     <i class="fa-solid fa-right-to-bracket"></i>
-                    Cerrar Sesion</a>
-            </li>
+                    Cerrar Sesion
+            </a></li>
         </ul>
     </nav><br>
 
@@ -101,14 +98,13 @@
                                     <td>" . $row['id'] . "</td>
                                     <td>" . $row['id_mesa'] . "</td>
                                     <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
-                                    <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
-                                </tr>";
+                                    <td style='text-align: center;'><a href='#' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
+                                 </tr>";
                         }
                     ?>
 
                 </table>
-            </div>
-            
+            </div>          
         </section>
     </div>
 

@@ -7,8 +7,6 @@
 		header("Location: Acceso.php");
 	}
 
-
-
    // Conexion a la base de datos
     require('../conexion.php');
 
@@ -32,7 +30,6 @@
                 telefono = '$telefono',
                 id_tipo_usuario = '$tipo',
                 direccion = '$direccion'
-
             where
                 id = $idU ";
 

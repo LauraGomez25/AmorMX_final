@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-} else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    } else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,6 @@ if (!isset($_SESSION["id_usuario"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-
 
 <body>
     <header>
@@ -50,14 +49,12 @@ if (!isset($_SESSION["id_usuario"])) {
         </div>
     </header>
 
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>
-                    Pedido
-                </a></li>
-
+                <i class="fas fa-home"></i>
+                Pedido
+            </a></li>
 
             <li class="right">
                 <a href="../pages/Chef.php" class="icon-link">
@@ -65,29 +62,23 @@ if (!isset($_SESSION["id_usuario"])) {
                     Salir</a>
             </li>
         </ul>
-    </nav>
-    <br>
+    </nav><br>
 
     <div id="services" class="main-content">
-
-
         <section class="main-section">
-
-
 
             <div class="tables">
                 <h2>Pedido</h2>
-
                 <hr>
             </div><br>
 
             <div class="field">
 
                 <?php
-                $id_pedido = $_GET['idPedido'];
+                    $id_pedido = $_GET['idPedido'];
                 ?>
-                <input type="hidden" name="id_mesa" value="<?php echo $id_mesa ?>" readonly="yes">
 
+                <input type="hidden" name="id_mesa" value="<?php echo $id_mesa ?>" readonly="yes">
 
                 <div class="main-table">
                     <table>
@@ -95,49 +86,48 @@ if (!isset($_SESSION["id_usuario"])) {
                             <th>Tipo Plato</th>
                             <th>Nombre Plato</th>
                             <th>Comentarios</th>
-                            <th>Cantidad</th>
-                          
+                            <th>Cantidad</th>    
                         </tr>
 
                         <?php
-                        $sql = "select 
-                            pm.id as plato_id,
-                            u.cedula, m.numero_mesa,
-                            pl.nombre as nombre_plato, 
-                            pm.comentarios, pm.cantidad,
-                            c.nombre_categoria
-                        from 
-                            pedidos pe inner join
-                                pedidos_mesa pm inner join
-                                    categorias c
-                                on c.id = pm.id_categoria inner join
-                                    platos pl 
-                                on pl.id = pm.id_plato
-                            on pe.id = pm.id_pedido inner join 
-                                mesas m 
-                            on m.id = pe.id_mesa inner join 
-                                usuarios u 
-                            on u.id = pe.id_usuario
-                        where 
-                            pe.estado_pedido = true and 
-                            pe.id = $id_pedido";
+                            $sql = "select 
+                                        pm.id as plato_id,
+                                        u.cedula, m.numero_mesa,
+                                        pl.nombre as nombre_plato, 
+                                        pm.comentarios, pm.cantidad,
+                                        c.nombre_categoria
+                                    from 
+                                        pedidos pe inner join
+                                            pedidos_mesa pm inner join
+                                                categorias c
+                                            on c.id = pm.id_categoria inner join
+                                                platos pl 
+                                            on pl.id = pm.id_plato
+                                        on pe.id = pm.id_pedido inner join 
+                                            mesas m 
+                                        on m.id = pe.id_mesa inner join 
+                                            usuarios u 
+                                        on u.id = pe.id_usuario
+                                    where 
+                                        pe.estado_pedido = true and 
+                                        pe.id = $id_pedido";
 
-                        $result = pg_query($conn, $sql);
+                            $result = pg_query($conn, $sql);
 
-                        while ($row = pg_fetch_assoc($result)) {
-                            echo "<tr>
-                                    <td>" . $row['nombre_categoria'] . "</td>
-                                    <td>" . $row['nombre_plato'] . "</td>
-                                    <td>" . $row['comentarios'] . "</td>
-                                    <td>" . $row['cantidad'] . "</td>
-                                  </tr>";
-                            //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
-                        
-                        }
-
+                            while ($row = pg_fetch_assoc($result)) {
+                                echo "<tr>
+                                        <td>" . $row['nombre_categoria'] . "</td>
+                                        <td>" . $row['nombre_plato'] . "</td>
+                                        <td>" . $row['comentarios'] . "</td>
+                                        <td>" . $row['cantidad'] . "</td>
+                                    </tr>";
+                                //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
+                            }
                         ?>
-                                            </table>
+
+                    </table>
                     <br>
+
                     <div style='text-align: center;'>
                         <a href='../Backend/generar_factura_pdf.php?id_mesa=$id_pedido' target='_blank'
                             title='Descargar e Imprimir Factura'>
@@ -148,7 +138,5 @@ if (!isset($_SESSION["id_usuario"])) {
 
         </section>
     </div>
-
 </body>
-
 </html>

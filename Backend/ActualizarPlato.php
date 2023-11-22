@@ -1,14 +1,11 @@
 <?php
-
-require('../conexion.php');
+    require('../conexion.php');
 
     session_start();
 
     if(!isset($_SESSION["id_usuario"])) {
 		header("Location: Acceso.php");
 	}
-
-
 
    // Conexion a la base de datos
     require('../conexion.php');
@@ -25,13 +22,11 @@ require('../conexion.php');
     $extension = pathinfo($_FILES["fil_foto"]["name"], PATHINFO_EXTENSION);
     $rutaImagen = $rutaCarpeta . $idP. "." .$extension;
 
-
     $sql = "update platos set 
                 nombre = '$nombre',
                 precio = '$precio',
                 id_categoria = '$tipo',
                 ruta = '$rutaImagen'
-            
             where
                 id = $idP ";
 
@@ -46,18 +41,8 @@ require('../conexion.php');
         }
     } else {
         echo "Error al insertar el plato: " . pg_last_error($conn);
-    }
-
-    // if (!$result) {
-    //     die("Error al ejecutar la consulta de actualizacion.");
-    // } else {
-    //     echo "<script>alert('Actualizacion exitosa');</script>";
-    //     header("Refresh:0;url=http://localhost/AmorMX_final/pages/RePLato.php");
-    // }
-
-    
+    } 
 
     // Cerrar la conexión a la base de datos si es necesario
     pg_close($conn);
-
 ?>

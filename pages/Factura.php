@@ -11,8 +11,7 @@
         $tipoUsuario = $_SESSION['id_tipo_usuario'];
 
         if($tipoUsuario != 1){
-            switch ($tipoUsuario) {
-                
+            switch ($tipoUsuario) {    
                 case 2:
                     header("Location: Mesero.php");
                     break;
@@ -42,8 +41,6 @@
 
 </head>
 
-
-
 <body>
     <header>
         <div class="image-container">
@@ -67,7 +64,6 @@
         </div>
     </header>
 
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="../Index.html" class="icon-link">
@@ -79,7 +75,6 @@
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Salir
             </a></li>
-
         </ul>
     </nav><br>
 
@@ -96,7 +91,6 @@
                     $id_pedido = $_GET['idPedido'];
 
                         if (isset($id_pedido) && !empty($id_pedido)) {
-
                             $sql = "SELECT 
                                         pm.id as plato_id,
                                         u.cedula, m.numero_mesa,
@@ -140,12 +134,12 @@
                                                 echo $nombreM;
 
                                                 echo "<tr>
-                                                    <td>" . $row['nombre_categoria'] . "</td>
-                                                    <td>" . $row['nombre_plato'] . "</td>
-                                                    <td>" . $row['cantidad'] . "</td>
-                                                    <td>" . $precio_unitario . "</td>
-                                                    <td>" . $precio_total . "</td>
-                                                </tr>";
+                                                        <td>" . $row['nombre_categoria'] . "</td>
+                                                        <td>" . $row['nombre_plato'] . "</td>
+                                                        <td>" . $row['cantidad'] . "</td>
+                                                        <td>" . $precio_unitario . "</td>
+                                                        <td>" . $precio_total . "</td>
+                                                    </tr>";
                                             }
 
                                             echo "<tr>
@@ -155,37 +149,35 @@
                                         </table>
                                     </div>";
 
-                            echo "<div style='text-align: center; display: flex; justify-content: space-around;'>
-                                    <a href='../Backend/GenerarFac.php?idPedido=$id_pedido' target='_blank' title='Descargar e Imprimir Factura'>
-                                        <i class='fa-solid fa-print' style='color: #ac539c; font-size: 29px; margin: 10px'></i> Imprimir Factura
-                                    </a>
-                        
-                                    <a href='../Backend/EnviarFac.php' onclick='mostrarFormulario();' title='Enviar Factura'>
-                                        <img src='../icons/email.jpg' alt=''> Enviar Factura
-                                    </a>
-                                </div>";
+                                echo "<div style='text-align: center; display: flex; justify-content: space-around;'>
+                                        <a href='../Backend/GenerarFac.php?idPedido=$id_pedido' target='_blank' title='Descargar e Imprimir Factura'>
+                                            <i class='fa-solid fa-print' style='color: #ac539c; font-size: 29px; margin: 10px'></i> Imprimir Factura
+                                        </a>
+                                        <a href='../Backend/EnviarFac.php' onclick='mostrarFormulario();' title='Enviar Factura'>
+                                            <img src='../icons/email.jpg' alt=''> Enviar Factura
+                                        </a>
+                                    </div>";
 
-                            echo "<div id='formularioCorreo' style='display:none; text-align: center;'>
-                                    <form action='../Backend/EnviarFactura.php' method='post'>
-                                        <label for='correo'>Correo Electrónico:</label>
-                                        <input type='email' id='correo' name='correo' required>
-                                        <input type='hidden' name='idPedido' value='<?php echo $id_pedido; ?>'>
-                                        <br>
-                                        <div class='boton'>
-                                            <button type='submit'>Enviar Factura</button>
-                                        </div>
-                                    </form>
-                                </div>";
+                                echo "<div id='formularioCorreo' style='display:none; text-align: center;'>
+                                        <form action='../Backend/EnviarFactura.php' method='post'>
+                                            <label for='correo'>Correo Electrónico:</label>
+                                            <input type='email' id='correo' name='correo' required>
+                                            <input type='hidden' name='idPedido' value='<?php echo $id_pedido; ?>'><br>
+                                            <div class='boton'>
+                                                <button type='submit'>Enviar Factura</button>
+                                            </div>
+                                        </form>
+                                    </div>";
 
-                            echo "<script>
-                                    function mostrarFormulario() {
-                                        var correo = prompt('Ingrese su correo electrónico:');
-                                        if (correo !== null) {
-                                            document.getElementById('correo').value = correo;
-                                            document.getElementById('formularioCorreo').style.display = 'block';
+                                echo "<script>
+                                        function mostrarFormulario() {
+                                            var correo = prompt('Ingrese su correo electrónico:');
+                                            if (correo !== null) {
+                                                document.getElementById('correo').value = correo;
+                                                document.getElementById('formularioCorreo').style.display = 'block';
+                                            }
                                         }
-                                    }
-                                </script>";
+                                    </script>";
 
                         }else{
                             echo "Error en la consulta SQL: " . pg_last_error($conn);
@@ -209,8 +201,9 @@
                 </div><br>
                 
             </div>
+
         </section>
     </div>
+    
 </body>
-
 </html>

@@ -9,9 +9,6 @@
         $id_usuario = $_SESSION["id_usuario"];
         $nom_usuario = $_SESSION['nombres'];
     }
-?>
-
-<?php
 
     $idPlatos=$_GET['idPlato'];
 
@@ -78,7 +75,6 @@
     }
 </style>
 
-
 <body>
     <header>
         <div class="image-container">
@@ -102,14 +98,11 @@
         </div>
     </header>
 
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                    
-                </a></li>
-
+                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>                   
+            </a></li>
 
             <li class="right">
                 <a href="../pages/RePlato.php" class="icon-link">
@@ -117,39 +110,34 @@
                     Salir</a>
             </li>
         </ul>
-    </nav>
-    <br>
-
-
+    </nav><br>
 
     <div class="main-content">
-            <section class="main-section">
+        <section class="main-section">
 
             <form action="../Backend/ActualizarPlato.php" method="POST" enctype="multipart/form-data">
 
+                <h2>Actualizar Plato</h2>
+                <hr><br>
 
+                <input type="hidden" name="idP" id="idP" value="<?php echo $idP; ?>" required>
 
-                    <h2>Actualizar Plato</h2>
-                    <hr><br>
+                <div class="field">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="nombre" id="name" value="<?php echo $nombre; ?>" required>
+                </div><br>
 
-                    <input type="hidden" name="idP" id="idP" value="<?php echo $idP; ?>" required>
+                <div class="field">
+                    <label for="id">Precio:</label>
+                    <input type="number" name="precio" id="id" value="<?php echo $precio; ?>" required>
+                </div><br>
 
-                    <div class="field">
-                        <label for="name">Nombre:</label>
-                        <input type="text" name="nombre" id="name" value="<?php echo $nombre; ?>" required>
-                    </div><br>
+                <div class="field">
+                    <label for="Tipo">Categoria:</label>
+                    <select type="select" name="rol" id="Tipo" required>
+                        <option value="<?php echo $idTipoCat; ?> "><?php echo $tipoC; ?> </option>
 
-                    <div class="field">
-                        <label for="id">Precio:</label>
-                        <input type="number" name="precio" id="id" value="<?php echo $precio; ?>" required>
-                    </div><br>
-
-                    <div class="field">
-                        <label for="Tipo">Categoria:</label>
-                        <select type="select" name="rol" id="Tipo" required>
-                            <option value="<?php echo $idTipoCat; ?> "><?php echo $tipoC; ?> </option>
-
-                            <?php
+                        <?php
                             require('../conexion.php');
 
                             // Prepare query
@@ -168,31 +156,27 @@
                                     echo '<option value="' . $row["nombre_categoria"] . '">' . $row["nombre_categoria"] . '</option>';
                                 }
                             }
-                            ?>
+                        ?>
 
-                        </select>
-                    </div>
+                    </select>
+                </div>
 
-                    <div class="field">
-                        <label for="Tipo">Imagen:</label>
-                        <input type="file" name="fil_foto" id="fil_foto" value="<?php echo $imagen; ?>" onchange="mostrarVistaPrevia()">
-                    </div>
-                    <div class="vista-previa">
-                        <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
-                            style="max-width: 300px; max-height: 300px;">
-                    </div>
+                <div class="field">
+                    <label for="Tipo">Imagen:</label>
+                    <input type="file" name="fil_foto" id="fil_foto" value="<?php echo $imagen; ?>" onchange="mostrarVistaPrevia()">
+                </div>
 
-                    <div class="boton">
-                        <button type="submit">Actualizar Plato</button>
-                    </div>
+                <div class="vista-previa">
+                    <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
+                        style="max-width: 300px; max-height: 300px;">
+                </div>
 
+                <div class="boton">
+                    <button type="submit">Actualizar Plato</button>
+                </div>
 
-                </form>
-            </section>
-        </div>
+            </form>
+        </section>
     </div>
-
-
 </body>
-
 </html>

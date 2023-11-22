@@ -1,14 +1,14 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else {
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else {
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,14 +51,11 @@ if (!isset($_SESSION["id_usuario"])) {
         </div>
     </header>
 
-
-
-    
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
                     <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                </a></li>
+            </a></li>
                 
             <li class="right">
                 <a href="../pages/Administrador.php" class="icon-link">
@@ -67,8 +64,7 @@ if (!isset($_SESSION["id_usuario"])) {
                 </a>
             </li>
         </ul>
-    </nav>
-    <br>
+    </nav><br>
 
 
     <div class="main-content">
@@ -91,17 +87,17 @@ if (!isset($_SESSION["id_usuario"])) {
                             onchange="mostrarVistaPrevia()">
                     </div>
                 </div>
+
                 <div id="contenedor_imagen" style="max-width: 30%; max-height: 30%; overflow: hidden;">
                     <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
                         style="max-width: 100%; height: auto; display: none; cursor: pointer;"
                         onclick="abrirImagenEnVentana()" require>
                 </div>
+
                 <span id="mensaje_contenedor" class="mensaje"
                     style="max-width: 100%; position: absolute; top: 0; left: 0; display: none;">Ningún archivo
-                    seleccionado</span>
-
-                <br>
-
+                    seleccionado
+                </span><br>
 
                 <div class="boton">
                     <button type="submit">Registrar menu</button>
@@ -112,12 +108,10 @@ if (!isset($_SESSION["id_usuario"])) {
 
         <section class="main-section category">
 
-
             <div class="tables">
                 <h2>Visualizacion</h2>
                 <hr>
-            </div>
-            <br>
+            </div><br>
 
             <div class="main-table">
                 <table>
@@ -126,35 +120,31 @@ if (!isset($_SESSION["id_usuario"])) {
                         <th>Imagen</th>
                         <th>..</th>
                     </tr>
+
                     <?php
-                    $sql = "select 
-                                            *
-                                    from 
-                                            categorias";
+                        $sql = "select 
+                                                *
+                                        from 
+                                                categorias";
 
-                    $result = pg_query($conn, $sql);
+                        $result = pg_query($conn, $sql);
 
-                    while ($row = pg_fetch_assoc($result)) {
-                        echo "<tr>
-                                            <td>" . $row['nombre_categoria'] . "</td>
-                                            <td><img src = " . $row['ruta'] . " width='50'></td>
-                                            <td style='text-align: center;'>
-                                            <a href='../Modificaciones/EditarCategoria.php?idCat=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
-                                                <img src='../icons/editar.png' width='20'>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                    }
-
+                        while ($row = pg_fetch_assoc($result)) {
+                            echo "<tr>
+                                    <td>" . $row['nombre_categoria'] . "</td>
+                                        <td><img src = " . $row['ruta'] . " width='50'></td>
+                                        <td style='text-align: center;'>
+                                        <a href='../Modificaciones/EditarCategoria.php?idCat=" . $row['id'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'>
+                                            <img src='../icons/editar.png' width='20'>
+                                        </a>
+                                    </td>
+                                </tr>";
+                        }
                     ?>
                 </table>
             </div>
         </section>
     </div>
-
     <br><br>
-
-
 </body>
-
 </html>

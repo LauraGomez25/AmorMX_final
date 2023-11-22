@@ -1,35 +1,32 @@
 <?php
-require('../conexion.php');
+    require('../conexion.php');
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION["id_usuario"])) {
-    header("Location: Acceso.php");
-}else{
-    $id_usuario = $_SESSION["id_usuario"];
-    $nom_usuario = $_SESSION['nombres'];
-}
-?>
+    if (!isset($_SESSION["id_usuario"])) {
+        header("Location: Acceso.php");
+    }else{
+        $id_usuario = $_SESSION["id_usuario"];
+        $nom_usuario = $_SESSION['nombres'];
+    }
 
-<?php
-$idCategoria = $_GET['idCat'];
+    $idCategoria = $_GET['idCat'];
 
-$sql = "select 
-                     *                     
-             from 
-                     categorias
-             where
+    $sql = "select 
+                    *                     
+            from 
+                    categorias
+            where
                     id = $idCategoria";
 
-$result = pg_query($conn, $sql);
+    $result = pg_query($conn, $sql);
 
-while ($row = pg_fetch_assoc($result)) {
-    $idC = $row['id'];
-    $imagen = $row['ruta'];
-    $nombreCat = $row['nombre_categoria'];
+    while ($row = pg_fetch_assoc($result)) {
+        $idC = $row['id'];
+        $imagen = $row['ruta'];
+        $nombreCat = $row['nombre_categoria'];
 
-}
-
+    }
 ?>
 
 <!DOCTYPE html>
@@ -73,9 +70,7 @@ while ($row = pg_fetch_assoc($result)) {
     }
 </style>
 
-
 <body>
-
     <header>
         <div class="image-container">
             <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo">
@@ -103,10 +98,8 @@ while ($row = pg_fetch_assoc($result)) {
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                    
-                </a></li>
-
+                <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>                   
+            </a></li>
 
             <li class="right">
                 <a href="../pages/ReCategoria.php" class="icon-link">
@@ -114,9 +107,7 @@ while ($row = pg_fetch_assoc($result)) {
                     Salir</a>
             </li>
         </ul>
-    </nav>
-    <br>
-
+    </nav><br>
 
     <div class="main-content">
         <section class="main-section">
@@ -140,16 +131,16 @@ while ($row = pg_fetch_assoc($result)) {
                             onchange="mostrarVistaPrevia()">
                     </div>
                 </div>
+
                 <div id="contenedor_imagen" style="max-width: 30%; max-height: 30%; overflow: hidden;">
                     <img id="vista_previa" src="#" alt="Vista Previa de la Imagen"
                         style="max-width: 100%; height: auto; display: none; cursor: pointer;"
                         onclick="abrirImagenEnVentana()">
                 </div>
+
                 <span id="mensaje_contenedor" class="mensaje"
-                    style="max-width: 100%; position: absolute; top: 0; left: 0; display: none;"></span>
-
-
-
+                    style="max-width: 100%; position: absolute; top: 0; left: 0; display: none;">
+                </span>
 
                 <div class="boton">
                     <button type="submit">Actualizar Categoria</button>
@@ -157,10 +148,6 @@ while ($row = pg_fetch_assoc($result)) {
 
             </form>
         </section>
-
     </div>
-
-
 </body>
-
 </html>

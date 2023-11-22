@@ -9,9 +9,6 @@
         $id_usuario = $_SESSION["id_usuario"];
         $nom_usuario = $_SESSION['nombres'];
     }
-?>
-
-<?php
 
     $idUsuario=$_GET['idUser'];
 
@@ -79,9 +76,7 @@
     }
 </style>
 
-
 <body>
-
     <header>
         <div class="image-container">
             <img src="../images/logo pdf blanco-05.png" alt="Imagen 1" class="logo">
@@ -104,15 +99,11 @@
         </div>
     </header>
 
-
-
     <nav>
         <ul class="menu">
             <li class="left"><a href="" class="icon-link">
-                    <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>
-                    
-                </a></li>
-
+                <i class="fas fa-home"></i>Administrador: <?php echo $nom_usuario; ?></i>       
+            </a></li>
 
             <li class="right">
                 <a href="../pages/ReEmpleados.php" class="icon-link">
@@ -120,9 +111,7 @@
                     Salir</a>
             </li>
         </ul>
-    </nav>
-    <br>
-
+    </nav><br>
 
      <div class="main-content">
             <section class="main-section">
@@ -144,12 +133,10 @@
                         <input type="number" name="dni" id="id" value="<?php echo $dni; ?>" required>
                     </div><br>
 
-
                     <div class="field">
                         <label for="email">Correo electronico:</label>
                         <input type="email" name="email" id="email" value="<?php echo $correo; ?>" required>
                     </div><br>
-
 
                     <div class="field">
                         <label for="phone">Telefono:</label>
@@ -164,11 +151,11 @@
                     <div class="field">
                         <label for="pass">Contraseña:</label>
                         <div class="password-container">
-                          <i id="toggle-password" class="fa-solid fa-eye-slash"
-                           style="color: #8c8388; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                          <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" required>
+                            <i id="toggle-password" class="fa-solid fa-eye-slash"
+                            style="color: #8c8388; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+                            <input type="password" name="pass" id="pass" value="<?php echo $pass; ?>" required>
                         </div>
-                      </div><script src="../main.js"></script><br>
+                    </div><script src="../main.js"></script><br>
 
                     <div class="field">
                         <label for="Tipo">Rol:</label>
@@ -185,16 +172,8 @@
                         <button type="submit">Guardar</button>
                     </div>
 
-  
-                
-
                 </form>
-
-            </section>
-
-                 
+            </section>                
         </div>
-    </div>
-    
 </body>
 </html>
