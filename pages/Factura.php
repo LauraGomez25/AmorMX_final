@@ -131,7 +131,7 @@
                                                 $precio_total = $precio_unitario * $cantidad;
                                                 $totalFactura += $precio_total;
                                                 $nombreM = $row['nombre_completo'];
-                                                echo $nombreM;
+                                                //echo $nombreM;
 
                                                 echo "<tr>
                                                         <td>" . $row['nombre_categoria'] . "</td>

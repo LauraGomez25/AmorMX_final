@@ -80,63 +80,72 @@
 
                 <input type="hidden" name="id_mesa" value="<?php echo $id_mesa ?>" readonly="yes">
 
-                <div class="main-table">
-                    <table>
-                        <tr>
-                            <th>Tipo Plato</th>
-                            <th>Nombre Plato</th>
-                            <th>Comentarios</th>
-                            <th>Cantidad</th>    
-                        </tr>
+                <?php
+                    $id_pedido = $_GET['idPedido'];
 
-                        <?php
-                            $sql = "select 
+                        if (isset($id_pedido) && !empty($id_pedido)) {
+                            $sql = "SELECT 
                                         pm.id as plato_id,
                                         u.cedula, m.numero_mesa,
-                                        pl.nombre as nombre_plato, 
+                                        pl.nombre as nombre_plato, pl.precio,
                                         pm.comentarios, pm.cantidad,
-                                        c.nombre_categoria
-                                    from 
-                                        pedidos pe inner join
-                                            pedidos_mesa pm inner join
-                                                categorias c
-                                            on c.id = pm.id_categoria inner join
-                                                platos pl 
-                                            on pl.id = pm.id_plato
-                                        on pe.id = pm.id_pedido inner join 
-                                            mesas m 
-                                        on m.id = pe.id_mesa inner join 
-                                            usuarios u 
-                                        on u.id = pe.id_usuario
-                                    where 
-                                        pe.estado_pedido = true and 
+                                        c.nombre_categoria,
+                                        u.nombre_completo
+                                    FROM 
+                                        pedidos pe INNER JOIN
+                                        pedidos_mesa pm INNER JOIN
+                                        categorias c ON c.id = pm.id_categoria INNER JOIN
+                                        platos pl ON pl.id = pm.id_plato
+                                        ON pe.id = pm.id_pedido INNER JOIN 
+                                        mesas m ON m.id = pe.id_mesa INNER JOIN 
+                                        usuarios u ON u.id = pe.id_usuario 
+                                    WHERE 
+                                        pe.estado_pedido = true AND 
                                         pe.id = $id_pedido";
 
                             $result = pg_query($conn, $sql);
 
-                            while ($row = pg_fetch_assoc($result)) {
-                                echo "<tr>
-                                        <td>" . $row['nombre_categoria'] . "</td>
-                                        <td>" . $row['nombre_plato'] . "</td>
-                                        <td>" . $row['comentarios'] . "</td>
-                                        <td>" . $row['cantidad'] . "</td>
-                                    </tr>";
-                                //<td><a href='../Backend/EliminarPlatoPedido.php'><img src = '../icons/editar.png' width='20'></a></td>
-                            }
+                            if ($result) {
+                                echo "<div class='main-table'>
+                                <table>
+                                <tr>
+                                    <th>Tipo Plato</th>
+                                    <th>Nombre Plato</th>
+                                    <th>Comentarios</th>
+                                    <th>Cantidad</th>    
+                                </tr>";
 
-                            echo "<div style='text-align: center; display: flex; justify-content: space-around;'>
-                                        <a href='../Backend/GenerarVoucher.php?idPedido=$id_pedido' target='_blank' title='Descargar e Imprimir Voucher'>
-                                            <i class='fa-solid fa-print' style='color: #ac539c; font-size: 29px; margin: 10px'></i> Imprimir Voucher
-                                        </a>
-                                    </div>";
-                        ?>
 
-                    </table>
-                    <br>
+                                while ($row = pg_fetch_assoc($result)) {
+                                    echo "<tr>
+                                            <td>" . $row['nombre_categoria'] . "</td>
+                                            <td>" . $row['nombre_plato'] . "</td>
+                                            <td>" . $row['comentarios'] . "</td>
+                                            <td>" . $row['cantidad'] . "</td>
+                                        </tr>";
+                                }
+                                        
+                                echo "</table>
+                                        </div>";
 
-                  
+                                echo "<div style='text-align: center; display: flex; justify-content: space-around;'>
+                                            <a href='../Backend/GenerarVoucher.php?idPedido=$id_pedido' target='_blank' title='Descargar e Imprimir Voucher'>
+                                                <i class='fa-solid fa-print' style='color: #ac539c; font-size: 29px; margin: 10px'></i> Imprimir Voucher
+                                            </a>
+                                        </div>";
 
+                            
+                        }else{
+                            echo "Error en la consulta SQL: " . pg_last_error($conn);
+                        }}else {
+                            echo "La variable \$id_pedido no está definida o está vacía.";
+                        }
+                        
+
+                                    
+            ?>
         </section>
     </div>
+    
 </body>
 </html>

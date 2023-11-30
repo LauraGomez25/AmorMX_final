@@ -44,19 +44,15 @@
     $contenido = "<h2>Detalles del Pedido</h2>";
 
     while ($row = pg_fetch_assoc($result)) {
+        $categoria = $row['nombre_categoria'];
+        $comentarios = $row['comentarios'];
         $nombre_producto = $row['nombre_plato'];
-        $precio_unitario = $row['precio'];
         $cantidad = $row['cantidad'];
-        $precio_total = $precio_unitario * $cantidad;
-        $totalFactura += $precio_total;
 
-        $nombreM = $row['nombre_completo'];
-
-        $contenido .= "<p><strong>Nombre del Mesero:</strong> $nombreM</p>";
+        $contenido .= "<p><strong>Categoria:</strong> $categoria</p>";
         $contenido .= "<p><strong>Nombre del Plato:</strong> $nombre_producto</p>";
         $contenido .= "<p><strong>Cantidad:</strong> $cantidad</p>";
-        $contenido .= "<p><strong>Precio Unitario:</strong> $precio_unitario</p>";
-        $contenido .= "<p><strong>Precio Platos:</strong> $precio_total</p>";
+        $contenido .= "<p><strong>Comentarios:</strong> $comentarios</p>";
         $contenido .= "<hr>"; 
     }
 
@@ -64,7 +60,7 @@
 
     pg_close($conn);
 
-    $directorio_destino = __DIR__ . '/../library/pdf_destino';
+    $directorio_destino = __DIR__ . '/../library/voucher';
     $archivo_pdf = $directorio_destino . "/pedido" . $id_pedido . ".pdf";
 
     if (!is_dir($directorio_destino)) {

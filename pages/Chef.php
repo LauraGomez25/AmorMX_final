@@ -97,7 +97,7 @@
                             echo "<tr>
                                     <td>" . $row['id'] . "</td>
                                     <td>" . $row['id_mesa'] . "</td>
-                                    <td style='text-align: center;'><a href='../Modificaciones/VerPedido.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
+                                    <td style='text-align: center;'><a href='../Modificaciones/VerPedido2.php?idPedido=" . $row['id'] . "&idMesa=" . $row['id_mesa'] . "' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/lupa.png' width='20'></a></td>
                                     <td style='text-align: center;'><a href='#' style='display: flex; justify-content: center; align-items: center; height: 100%;'><img src='../icons/boton.png' width='20'></a></td>
                                  </tr>";
                         }
